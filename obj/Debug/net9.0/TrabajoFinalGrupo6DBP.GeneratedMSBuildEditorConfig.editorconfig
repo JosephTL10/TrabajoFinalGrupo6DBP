@@ -1,0 +1,113 @@
+is_global = true
+build_property.TargetFramework = net9.0
+build_property.TargetFramework = net9.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = TrabajoFinalGrupo6DBP
+build_property.RootNamespace = TrabajoFinalGrupo6DBP
+build_property.ProjectDir = D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/CitasMedicas/EditarCitaPaciente.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNNZWRpY2FzXEVkaXRhckNpdGFQYWNpZW50ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/CitasMedicas/EliminarCitaPaciente.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNNZWRpY2FzXEVsaW1pbmFyQ2l0YVBhY2llbnRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/CitasMedicas/ListaCitasMedicas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNNZWRpY2FzXExpc3RhQ2l0YXNNZWRpY2FzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/CitasMedicas/RegistrarCitaPaciente.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNNZWRpY2FzXFJlZ2lzdHJhckNpdGFQYWNpZW50ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/Home/CambiarContrasenia.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYW1iaWFyQ29udHJhc2VuaWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/Home/Inicio.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmljaW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/Home/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/Home/RecuperarContrasenia.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWN1cGVyYXJDb250cmFzZW5pYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/Home/Registro.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3Ryby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/Pacientes/EditarRegistroPaciente.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFjaWVudGVzXEVkaXRhclJlZ2lzdHJvUGFjaWVudGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/Pacientes/EliminarRegistroPaciente.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFjaWVudGVzXEVsaW1pbmFyUmVnaXN0cm9QYWNpZW50ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/Pacientes/ListaPacientes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFjaWVudGVzXExpc3RhUGFjaWVudGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/Pacientes/RegistrarPaciente.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFjaWVudGVzXFJlZ2lzdHJhclBhY2llbnRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/Reporte/GenerarReporte.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0ZVxHZW5lcmFyUmVwb3J0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Clases de cada semana de cada curso de la universidad/6to ciclo/Desarrollo basado en plataformas/Actividades/TrabajoFinal/TrabajoFinalGrupo6DBP/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-quaml1lewg

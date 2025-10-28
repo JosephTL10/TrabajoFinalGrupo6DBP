@@ -1,0 +1,127 @@
+/* ======= Estilo general ======= */
+body {
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #e6f3ff, #f8fbff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* ======= Contenedor principal ======= */
+.container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 420px;
+    padding: 40px 35px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
+    animation: fadeIn 0.6s ease;
+    border-top: 5px solid #0078d7;
+}
+
+/* ======= Título ======= */
+.container h1 {
+    text-align: center;
+    color: #004b8d;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+/* ======= Etiquetas ======= */
+form label {
+    display: block;
+    margin-bottom: 6px;
+    color: #004b8d;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* ======= Entradas ======= */
+form input {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    border: 1px solid #cfd9e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f9fcff;
+    transition: all 0.25s ease;
+}
+
+form input:focus {
+    border-color: #0078d7;
+    background-color: #fff;
+    box-shadow: 0 0 6px rgba(0, 120, 215, 0.25);
+    outline: none;
+}
+
+/* ======= Botón ======= */
+form button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #0078d7, #00bfa6);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+form button:hover {
+    background: linear-gradient(90deg, #006dc7, #00a58f);
+    transform: scale(1.02);
+}
+
+form button:active {
+    transform: scale(0.98);
+}
+
+/* ======= Pie del formulario ======= */
+.footer-text {
+    text-align: center;
+    margin-top: 20px;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.footer-text .link {
+    color: #0078d7;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.footer-text .link:hover {
+    text-decoration: underline;
+}
+
+/* ======= Animación ======= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ======= Responsive ======= */
+@media (max-width: 480px) {
+    .container {
+        padding: 30px 25px;
+    }
+
+    .container h1 {
+        font-size: 1.5rem;
+    }
+
+    form button {
+        font-size: 0.95rem;
+    }
+}

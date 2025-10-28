@@ -1,0 +1,113 @@
+
+.pacientes-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 2200px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+@media(max-width: 500px ){
+    .pacientes-card{
+        max-width: 800px;
+        padding: auto;
+
+    }
+
+    thead{
+        max-width: 1000px;
+    }
+
+    th{
+        font-size: 0.4rem;
+    }
+
+
+    td{
+        font-size: 0.4rem;
+    }
+
+
+}
+
+.pacientes-card:hover {
+    transform: translateY(-3px);
+}
+
+.pacientes-card h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #003366;
+    border-left: 5px solid #007bff;
+    padding-left: 10px;
+}
+
+.pacientes-card .btn-info {
+    background: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.pacientes-card .btn-info:hover {
+    background: #0056b3;
+}
+
+
+.tabla-pacientes {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    background: #fafafa;
+}
+
+.tabla-pacientes thead {
+    background: linear-gradient(90deg, #0066cc, #0099ff); ;
+    color: white;
+    
+}
+
+.tabla-pacientes th, 
+.tabla-pacientes td {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabla-pacientes tbody tr:hover {
+    background: #f1f9ff;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+    margin-right: 5px;
+}
+
+.btn-warning {
+    background: #f0ad4e;
+}
+
+.btn-warning:hover {
+    background: #d68910;
+}
+
+.btn-danger {
+    background: #d9534f;
+}
+
+.btn-danger:hover {
+    background: #b52b27;
+}

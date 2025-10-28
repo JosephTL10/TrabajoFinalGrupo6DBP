@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Registrar Paciente";
+    
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/RegistrarPaciente.css" />
+}
+
+<div class="container">
+    <h1>Registrar Paciente</h1>
+    <form asp-action="RegistrarPaciente" method="post">
+        <label for="DNI_Paciente">DNI del paciente *</label>
+        <input type="text" id="DNI_Paciente" name="DNI_Paciente" placeholder="Ingrese el DNI del paciente">
+
+        <label for="Nombre_Completo_Paciente">Nombre Completo del paciente *</label>
+        <input type="text" id="Nombre_Completo_Paciente" name="Nombre_Completo_Paciente" placeholder="Ingrese el nombre completo del paciente">
+
+        <label for="Fecha_Nacimiento_Paciente">Fecha de Nacimiento del paciente *</label>
+        <input type="date" id="Fecha_Nacimiento_Paciente" name="Fecha_Nacimiento_Paciente">
+
+        <label for="Telefono_Paciente">Teléfono del paciente *</label>
+        <input type="tel" id="Telefono_Paciente" name="Telefono_Paciente" placeholder="Ingrese el teléfono del paciente">
+
+        <label for="Direccion_Paciente">Dirección del paciente *</label>
+        <input type="text" id="Direccion_Paciente" name="Direccion_Paciente" placeholder="Ingrese la dirección del paciente">
+
+        <button type="submit">Registrar</button>
+    </form>
+</div>
+
+

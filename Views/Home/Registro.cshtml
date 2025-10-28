@@ -1,0 +1,51 @@
+@{
+    ViewData["Title"] = "Registro";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/Registro.css" asp-append-version="true" />
+</head>
+<body>
+
+    <div class="container">
+        <h1>Registro de Usuario</h1>
+        <form asp-action="Registro" method="post">
+
+            <label for="DNI_Usuario">DNI *</label>
+            <input type="text" id="DNI_Usuario" name="DNI_Usuario" placeholder="Ingrese su DNI" required>
+
+            <label for="Nombres_Usuario">Nombres *</label>
+            <input type="text" id="Nombres_Usuario" name="Nombres_Usuario" placeholder="Ingrese sus nombres" required>
+
+            <label for="Apellidos_Usuario">Apellidos *</label>
+            <input type="text" id="Apellidos_Usuario" name="Apellidos_Usuario" placeholder="Ingrese sus apellidos" required>
+
+            <label for="Telefono_Usuario">Teléfono *</label>
+            <input type="tel" id="Telefono_Usuario" name="Telefono_Usuario" placeholder="Ingrese su teléfono" required>
+
+            <label for="Correo_Electronico_Usuario">Correo electrónico *</label>
+            <input type="text" id="Correo_Electronico_Usuario" name="Correo_Electronico_Usuario" placeholder="Ingrese su correo electrónico" required>
+
+            <label for="Contrasenia_Usuario">Contraseña *</label>
+            <input type="password" id="Contrasenia_Usuario" name="Contrasenia_Usuario" placeholder="Ingrese su contraseña" required>
+
+            <button type="submit">Registrar</button>
+        </form>
+
+
+        <p class="footer-text">
+            ¿Ya tienes una cuenta? <a asp-action="Login" class="link">Inicia Sesión aquí</a>
+        </p>
+    </div>
+
+</body>
+</html>

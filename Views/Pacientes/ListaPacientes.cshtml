@@ -1,0 +1,62 @@
+@{
+    ViewData["Title"] = "Lista de Pacientes";
+    
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/ListaPacientes.css" />
+}
+
+
+@model IEnumerable<TrabajoFinalGrupo6DBP.Models.Paciente>
+
+
+<div class="card pacientes-card">
+    <h2>Lista de Pacientes</h2>
+
+    <p>
+        <a asp-controller="Pacientes" asp-action="RegistrarPaciente" class="btn btn-info">Registrar nuevo paciente</a>
+    </p>
+
+    <form asp-action="ListaPacientes" method="get" class="d-flex mb-3" role="search">
+        <input name="dni" class="form-control me-2" type="search" placeholder="Buscar por DNI" aria-label="Search" value="@Context.Request.Query["dni"]" />
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form>
+
+    <table class="tabla-pacientes">
+        <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Nombre Completo</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            
+            @foreach(var paciente in Model){
+            <tr>
+                <td data-label="DNI">@paciente.DNI_Paciente</td>
+                <td data-label="Nombre">@paciente.Nombre_Completo_Paciente</td>
+                <td data-label="Fecha de Nacimiento">@paciente.Fecha_Nacimiento_Paciente</td>
+                <td data-label="Teléfono">@paciente.Telefono_Paciente</td>
+                <td data-label="Dirección">@paciente.Direccion_Paciente</td>
+                <td data-label="Acciones">
+                    <a asp-controller="Pacientes" asp-action="EditarRegistroPaciente" asp-route-id="@paciente.Id_Paciente" class="btn btn-warning">Editar</a>
+                    <a asp-controller="Pacientes" asp-action="EliminarRegistroPaciente" asp-route-id="@paciente.Id_Paciente" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+            }
+
+            
+            
+            
+        </tbody>
+    </table>
+</div>
+
+

@@ -1,0 +1,128 @@
+body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 102, 204, 0.8), rgba(0, 102, 204, 0.8)), url('https://via.placeholder.com/1920x300/0066cc/ffffff?text=Reportes+Hospitalarios') no-repeat center/cover;
+            color: #fff;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .hero-section p {
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            background: none;
+            border: none;
+            padding: 0 0 20px 0;
+        }
+
+        h2 {
+            color: #0066cc;
+            margin-bottom: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .btn-primary-custom {
+            background-color: #0066cc;
+            border-color: #0066cc;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #004c99;
+            border-color: #004c99;
+            transform: scale(1.05);
+            color: #fff;
+        }
+
+        .btn-secondary-custom {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary-custom:hover {
+            background-color: #545b62;
+            border-color: #545b62;
+            transform: scale(1.05);
+            color: #fff;
+        }
+
+        .table {
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+        .table th {
+            background-color: #e3f2fd;
+            color: #0066cc;
+            font-weight: bold;
+            border-top: none;
+        }
+
+        .table td {
+            vertical-align: middle;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }

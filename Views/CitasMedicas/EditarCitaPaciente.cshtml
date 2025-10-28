@@ -1,0 +1,72 @@
+@model TrabajoFinalGrupo6DBP.Models.CitaMedica
+
+@{
+    ViewData["Title"] = "Editar Cita Médica";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/EditarCitaPaciente.css" />
+}
+
+<div class="container-editar">
+    <h2>Editar Cita Médica</h2>
+
+    <form asp-action="EditarCitaPaciente" method="post" class="form-editar">
+        <input type="hidden" asp-for="Id_CitaMedica" />
+
+        <div class="form-group">
+            <label asp-for="PacienteId">ID del Paciente</label>
+            <input asp-for="PacienteId" class="form-control" readonly />
+            <span asp-validation-for="PacienteId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Fecha_CitaMedica">Fecha de la Cita</label>
+            <input asp-for="Fecha_CitaMedica" type="date" class="form-control" />
+            <span asp-validation-for="Fecha_CitaMedica" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Hora_CitaMedica">Hora de la Cita</label>
+            <input asp-for="Hora_CitaMedica" type="time" class="form-control" />
+            <span asp-validation-for="Hora_CitaMedica" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Especialidad">Especialidad</label>
+            <input asp-for="Especialidad" class="form-control" placeholder="Ejemplo: Cardiología, Pediatría, etc." />
+            <span asp-validation-for="Especialidad" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Medico">Médico Asignado</label>
+            <input asp-for="Medico" class="form-control" placeholder="Nombre del médico" />
+            <span asp-validation-for="Medico" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Observaciones">Observaciones</label>
+            <textarea asp-for="Observaciones" class="form-control" rows="3" placeholder="Notas adicionales o recomendaciones..."></textarea>
+            <span asp-validation-for="Observaciones" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Estado_CitaMedica">Estado de la Cita</label>
+            <select asp-for="Estado_CitaMedica" class="form-control">
+                <option value="En proceso">En proceso</option>
+                <option value="Confirmada">Confirmada</option>
+                <option value="Cancelada">Cancelada</option>
+            </select>
+            <span asp-validation-for="Estado_CitaMedica" class="text-danger"></span>
+        </div>
+
+        <div class="botones">
+            <button type="submit" class="btn btn-guardar">Guardar Cambios</button>
+            <a asp-action="ListaCitasMedicas" class="btn btn-cancelar">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

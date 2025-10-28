@@ -1,0 +1,44 @@
+@{
+    ViewData["Title"] = "Recuperar contraseña";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+</head>
+<body>
+
+
+<div class="container">
+    <h1>Recuperar contraseña</h1>
+
+    <form asp-action="RecuperarContrasenia" method="post">
+        <div>
+            <label for="Correo_Electronico_Usuario">Correo electrónico *</label>
+            <input type="email" name="Correo_Electronico_Usuario" placeholder="Ingrese su correo electrónico" required />
+        </div>
+
+        <div>
+            <button type="submit">Enviar</button>
+        </div>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div style="color:red;">
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <p>@error.ErrorMessage</p>
+                }
+            </div>
+        }
+    </form>
+</div>
+
+</body>
+</html>

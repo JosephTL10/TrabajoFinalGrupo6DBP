@@ -1,0 +1,53 @@
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+    Layout = null;
+}
+
+@model TrabajoFinalGrupo6DBP.Models.Usuario
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Sistema Hospitalario</title>
+
+    <!-- Fuente moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Estilos del login -->
+    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+</head>
+
+<body>
+    <div class="container">
+        <h1>Iniciar Sesión</h1>
+
+        <form asp-action="Login" method="post">
+            <label for="Correo_Electronico_Usuario">Correo electrónico *</label>
+            <input type="text"
+                    id="Correo_Electronico_Usuario"
+                    name="Correo_Electronico_Usuario"
+                    placeholder="Ingrese su correo electrónico"
+                    required />
+
+            <label for="Contrasenia_Usuario">Contraseña *</label>
+            <input type="password"
+                    id="Contrasenia_Usuario"
+                    name="Contrasenia_Usuario"
+                    placeholder="Ingrese su contraseña"
+                    required />
+
+            <button type="submit">Ingresar</button>
+        </form>
+
+        <p class="footer-text">
+            ¿No tienes una cuenta? <a asp-action="Registro" class="link">Regístrate aquí</a>
+        </p>
+
+        <p class="footer-text">
+            <a asp-action="RecuperarContrasenia" class="link">¿Olvidaste tu contraseña?</a>
+        </p>
+    </div>
+</body>
+</html>

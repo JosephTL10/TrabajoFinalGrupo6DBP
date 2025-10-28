@@ -1,0 +1,38 @@
+@model TrabajoFinalGrupo6DBP.Models.Paciente
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/EliminarRegistroPaciente.css" />
+}
+
+@{
+    ViewData["Title"] = "Eliminar Registro de Paciente";
+}
+
+<h2>Eliminar Registro de Paciente</h2>
+
+@if (Model == null)
+{
+    <p>No se encontró el paciente.</p>
+    <a href="@Url.Action("ListaPacientes", "Pacientes")" class="btn btn-secondary">Volver a la lista</a>
+}
+else
+{
+    <div class="alert alert-warning">
+        <p>⚠️ ¿Está seguro que desea eliminar este registro de paciente? Esta acción no es recomendable.</p>
+    </div>
+
+    <table class="table table-bordered">
+        <tr><th>ID</th><td>@Model.Id_Paciente</td></tr>
+        <tr><th>Nombre Completo</th><td>@Model.Nombre_Completo_Paciente</td></tr>
+        <tr><th>DNI</th><td>@Model.DNI_Paciente</td></tr>
+        <tr><th>Fecha de Nacimiento</th><td>@Model.Fecha_Nacimiento_Paciente.ToShortDateString()</td></tr>
+        <tr><th>Teléfono</th><td>@Model.Telefono_Paciente</td></tr>
+        <tr><th>Dirección</th><td>@Model.Direccion_Paciente</td></tr>
+    </table>
+
+    <form asp-action="EliminarRegistroPacienteConfirm" method="post">
+        <input type="hidden" name="id" value="@Model.Id_Paciente" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="@Url.Action("ListaPacientes", "Pacientes")" class="btn btn-secondary">Cancelar</a>
+    </form>
+}

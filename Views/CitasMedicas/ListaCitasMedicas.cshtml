@@ -1,0 +1,62 @@
+@{
+    ViewData["Title"] = "Lista de Citas Médicas";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/ListaCitasMedicas.css" />
+}
+
+@model IEnumerable<TrabajoFinalGrupo6DBP.Models.CitaMedica>
+
+<div class="card pacientes-card">
+    <h2>Lista de Citas Médicas</h2>
+
+    <p>
+        <a asp-controller="CitasMedicas" asp-action="RegistrarCitaPaciente" class="btn btn-info">
+            Registrar una nueva cita médica
+        </a>
+    </p>
+
+    <form asp-action="ListaCitasMedicas" method="get" class="d-flex mb-3" role="search">
+        <input name="dni" class="form-control me-2" type="search" placeholder="Buscar por DNI del Paciente" aria-label="Search" value="@Context.Request.Query["dni"]" />
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form>
+
+    <table class="tabla-pacientes">
+        <thead>
+            <tr>
+                <th>Id Cita</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>DNI del Paciente</th>
+                <th>Nombre del Paciente</th>
+                <th>Especialidad</th>
+                <th>Médico</th>
+                <th>Observaciones</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cita in Model)
+            {
+                <tr>
+                    <td>@cita.Id_CitaMedica</td>
+                    <td>@cita.Fecha_CitaMedica.ToShortDateString()</td>
+                    <td>@cita.Hora_CitaMedica</td>
+                    <td>@cita.Paciente?.DNI_Paciente</td>
+                    <td>@cita.Paciente?.Nombre_Completo_Paciente</td>
+                    <td>@cita.Especialidad</td>
+                    <td>@cita.Medico</td>
+                    <td>@cita.Observaciones</td>
+                    <td>@cita.Estado_CitaMedica</td>
+                    <td>
+                        <a asp-action="EditarCitaPaciente" asp-route-id="@cita.Id_CitaMedica" class="btn btn-warning">Editar</a>
+                        <a asp-action="EliminarCitaPaciente" asp-route-id="@cita.Id_CitaMedica" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

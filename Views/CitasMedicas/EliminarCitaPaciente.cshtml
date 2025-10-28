@@ -1,0 +1,40 @@
+@model TrabajoFinalGrupo6DBP.Models.CitaMedica
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/EliminarCitaMedica.css" />
+}
+
+@{
+    ViewData["Title"] = "Eliminar Cita Médica";
+}
+
+<h2>Eliminar Cita Médica</h2>
+
+@if (Model == null)
+{
+    <p>No se encontró la cita médica.</p>
+    <a href="@Url.Action("ListaCitasMedicas", "CitasMedicas")" class="btn btn-secondary">Volver a la lista</a>
+}
+else
+{
+    <div class="alert alert-warning">
+        <p>⚠️ ¿Está seguro que desea eliminar esta cita médica? Esta acción no se puede deshacer.</p>
+    </div>
+
+    <table class="table table-bordered">
+        <tr><th>ID Cita</th><td>@Model.Id_CitaMedica</td></tr>
+        <tr><th>ID Paciente</th><td>@Model.PacienteId</td></tr>
+        <tr><th>Fecha de la Cita</th><td>@Model.Fecha_CitaMedica.ToShortDateString()</td></tr>
+        <tr><th>Hora</th><td>@Model.Hora_CitaMedica</td></tr>
+        <tr><th>Especialidad</th><td>@Model.Especialidad</td></tr>
+        <tr><th>Médico</th><td>@Model.Medico</td></tr>
+        <tr><th>Observaciones</th><td>@Model.Observaciones</td></tr>
+        <tr><th>Estado</th><td>@Model.Estado_CitaMedica</td></tr>
+    </table>
+
+    <form asp-action="EliminarCitaPacienteConfirm" method="post">
+        <input type="hidden" name="id" value="@Model.Id_CitaMedica" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="@Url.Action("ListaCitasMedicas", "CitasMedicas")" class="btn btn-secondary">Cancelar</a>
+    </form>
+}

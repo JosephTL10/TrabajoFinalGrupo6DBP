@@ -1,0 +1,155 @@
+.pacientes-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 1500px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.pacientes-card:hover {
+    transform: translateY(-3px);
+}
+
+.pacientes-card h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #003366;
+    border-left: 5px solid #007bff;
+    padding-left: 10px;
+}
+
+.pacientes-card .btn-info {
+    background: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.pacientes-card .btn-info:hover {
+    background: #0056b3;
+}
+
+/* === TABLA PRINCIPAL === */
+.tabla-pacientes {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    background: #fafafa;
+}
+
+.tabla-pacientes thead {
+    background: linear-gradient(90deg, #0066cc, #0099ff);
+    color: white;
+}
+
+.tabla-pacientes th,
+.tabla-pacientes td {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabla-pacientes tbody tr:hover {
+    background: #f1f9ff;
+}
+
+/* === BOTONES === */
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+    margin-right: 5px;
+}
+
+.btn-warning {
+    background: #f0ad4e;
+}
+
+.btn-warning:hover {
+    background: #d68910;
+}
+
+.btn-danger {
+    background: #d9534f;
+}
+
+.btn-danger:hover {
+    background: #b52b27;
+}
+
+/* === RESPONSIVE === */
+@media screen and (max-width: 768px) {
+    .tabla-pacientes thead {
+        display: none;
+    }
+
+    .tabla-pacientes,
+    .tabla-pacientes tbody,
+    .tabla-pacientes tr,
+    .tabla-pacientes td {
+        display: block;
+        width: 100%;
+    }
+
+    .tabla-pacientes tr {
+        background: white;
+        margin-bottom: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        overflow: hidden;
+    }
+
+    .tabla-pacientes td {
+        text-align: right;
+        padding: 10px 15px;
+        border-bottom: 1px solid #eee;
+        position: relative;
+    }
+
+    .tabla-pacientes td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: 50%;
+        font-weight: bold;
+        text-align: left;
+        color: #003366;
+    }
+
+    .tabla-pacientes td:last-child {
+        border-bottom: none;
+    }
+
+    .pacientes-card {
+        padding: 1.2rem;
+        margin: 1rem;
+    }
+
+    .pacientes-card h2 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .btn {
+        display: inline-block;
+        text-align: center;
+        width: 48%;
+        margin-bottom: 6px;
+    }
+
+    .btn-info {
+        width: auto;
+        display: inline-block;
+    }
+}

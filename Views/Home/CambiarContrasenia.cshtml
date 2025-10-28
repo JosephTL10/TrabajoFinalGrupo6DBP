@@ -1,0 +1,48 @@
+@{
+    ViewData["Title"] = "Cambiar contraseña";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/css/Registro.css" asp-append-version="true" />
+</head>
+<body>
+
+<div class="container">
+    <h1>Cambiar contraseña</h1>
+
+
+
+
+    <form asp-action="CambiarContrasenia" method="post">
+        <div>
+            <label for="Contrasenia_Usuario">Nueva contraseña *</label>
+            <input type="password" name="Contrasenia_Usuario" placeholder="Ingrese su nueva contraseña" required />
+        </div>
+
+        <div>
+            <button type="submit">Guardar nueva contraseña</button>
+        </div>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div style="color:red;">
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <p>@error.ErrorMessage</p>
+                }
+            </div>
+        }
+    </form>
+</div>
+
+
+</body>
+
+</html>
