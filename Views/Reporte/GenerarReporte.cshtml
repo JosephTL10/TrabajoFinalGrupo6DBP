@@ -1,320 +1,261 @@
+@{
+    ViewData["Title"] = "Generar Reporte - Hospital Loayza";
+}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generar Reporte - Hospital Loayza</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Bootstrap JS (al final del body) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
 
-    @section Styles {
-    <link rel="stylesheet" href="~/css/GenerarReporte.css" />
-}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
 
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .hero-section {
-            background: linear-gradient(rgba(0, 102, 204, 0.8), rgba(0, 102, 204, 0.8)), url('https://via.placeholder.com/1920x300/0066cc/ffffff?text=Reportes+Hospitalarios') no-repeat center/cover;
-            color: #fff;
-            padding: 60px 0;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .hero-section h1 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .hero-section p {
-            font-size: 1.1rem;
-            margin-bottom: 0;
-        }
-
-        .main-container {
-            max-width: 1800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .card {
-            border-radius: 15px;
-            border: none;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            background: #fff;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 30px;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .card-header {
-            background: none;
-            border: none;
-            padding: 0 0 20px 0;
-        }
-
-        h2 {
-            color: #0066cc;
-            margin-bottom: 20px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .form-label {
-            font-weight: 500;
-            color: #333;
-        }
-
-        .btn-primary-custom {
-            background-color: #0066cc;
-            border-color: #0066cc;
-            border-radius: 10px;
-            padding: 10px 20px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary-custom:hover {
-            background-color: #004c99;
-            border-color: #004c99;
-            transform: scale(1.05);
-            color: #fff;
-        }
-
-        .btn-secondary-custom {
-            background-color: #6c757d;
-            border-color: #6c757d;
-            border-radius: 10px;
-            padding: 10px 20px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .btn-secondary-custom:hover {
-            background-color: #545b62;
-            border-color: #545b62;
-            transform: scale(1.05);
-            color: #fff;
-        }
-
-        .table {
-            margin-top: 20px;
-            font-size: 0.95rem;
-        }
-
-        .table th {
-            background-color: #e3f2fd;
-            color: #0066cc;
-            font-weight: bold;
-            border-top: none;
-        }
-
-        .table td {
-            vertical-align: middle;
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 40px;
-            color: #6c757d;
-            font-style: italic;
-        }
-
-        .export-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
+        body { background: #eef3f7; font-family: 'Segoe UI', sans-serif; }
+        .hero { background: linear-gradient(90deg, #007bff, #004a99); color: white; padding: 40px 0; text-align: center; border-radius: 0 0 25px 25px; }
+        .card { border-radius: 15px; border: none; box-shadow: 0 3px 15px rgba(0,0,0,0.1); }
+        .btn-custom { background-color: #007bff; color: white; border-radius: 10px; transition: 0.3s; }
+        .btn-custom:hover { background-color: #0056b3; transform: scale(1.05); }
+        #spinner { display: none; }
     </style>
 </head>
 <body>
-
-
-    
-    <section class="hero-section"> 
-        <div class="main-container"> 
-            <h1>
-                <i class="bi bi-file-earmark-bar-graph">
-                </i> 
-                Generar Reporte
-            </h1> 
-            <p>Genera reportes administrativos sobre pacientes y citas para una mejor toma de decisiones en el Hospital Nacional Arzobispo Loayza.</p>
-        </div> 
-    </section> 
-    <div class="main-container">
-        <div class="card"> 
-            <div class="card-header"> 
-                <h2><i class="bi bi-funnel"></i> Filtros de Reporte</h2> 
-            </div> 
-            
-            <div class="card-body"> 
-                <form asp-action="GenerarReporte" method="post" id="reporteForm"> 
-                    <div class="row g-3"> 
-                        <div class="col-md-6"> 
-                            <label for="tipoReporte" class="form-label">Tipo de Reporte</label> 
-                            
-                            <select class="form-select" id="tipoReporte" name="TipoReporte" required> 
-                            
-                                <option value="">Seleccione un tipo...</option> <option value="pacientes">Pacientes Registrados</option> 
-                                <option value="citas">Citas Médicas</option> <option value="estadisticas">Estadísticas Generales</option> 
-                            </select> 
-                        </div> 
-                        
-                        <div class="col-md-3">
-                            <label for="fechaInicio" class="form-label">Fecha Inicio</label> 
-                            <input type="date" class="form-control" id="fechaInicio" name="FechaInicio" required>
-                        
-                        </div> 
-                        
-                        <div class="col-md-3"> 
-                            <label for="fechaFin" class="form-label">Fecha Fin</label> 
-                            <input type="date" class="form-control" id="fechaFin" name="FechaFin" required> 
-                        </div> 
-                    </div> 
-                    
-                    <div class="row g-3 mt-3"> 
-                        <div class="col-md-6"> 
-                            <label for="especialidad" class="form-label">Especialidad (Opcional)</label> 
-                            <select class="form-select" id="especialidad" name="Especialidad"> 
-                                <option value="">Todas las especialidades</option> 
-                                <option value="cardiologia">Cardiología</option> 
-                                <option value="pediatria">Pediatría</option> 
-                                <option value="general">Medicina General</option> 
-                                <option value="laboratorio">Laboratorio Clínico</option> 
-                            </select> 
-                        </div> 
-                        <div class="col-md-6">
-                            <label for="estado" class="form-label">Estado (Opcional)</label> 
-                            <select class="form-select" id="estado" name="Estado"> 
-                                <option value="">Todos los estados</option> 
-                                <option value="confirmada">Confirmada</option>
-                                <option value="cancelada">Cancelada</option> 
-                                <option value="atendida">Atendida</option> 
-                            </select> 
-                        </div> 
-                    </div> 
-                    
-                    <div class="d-flex justify-content-center mt-4"> 
-                        <button type="submit" class="btn btn-primary-custom me-2"> 
-                        <i class="bi bi-search"></i> Generar Reporte 
-                        </button> 
-                        
-                        <button type="reset" class="btn btn-outline-secondary"> <i class="bi bi-arrow-clockwise"></i> Limpiar Filtros 
-                        </button> 
-                    </div> 
-                    
-                </form> 
-            </div> 
-        </div> 
-        
-        <div class="card"> 
-            <div class="card-header"> 
-                <h2><i class="bi bi-table"></i> Resultados del Reporte</h2> 
-                
-                <p class="text-muted">Ejemplo de reporte generado para pacientes registrados entre el 01/01/2025 y 31/01/2025.</p> 
-                
-            </div> 
-            
-            <div class="card-body"> 
-                <div class="table-responsive"> 
-                    <table class="table table-striped table-hover"> 
-                        <thead> 
-                            <tr> 
-                                <th>ID</th> 
-                                <th>Nombre del Paciente</th> 
-                                <th>DNI</th> 
-                                <th>Edad</th> 
-                                <th>Fecha de Registro</th> 
-                                <th>Especialidad</th> 
-                                <th>Estado</th> 
-                                <th>Acciones</th> 
-                            </tr> 
-                        </thead> 
-                        
-                        <tbody> 
-                            <tr> 
-                                <td>1</td> 
-                                <td>Juan Pérez López</td> 
-                                <td>12345678</td> <td>45</td> 
-                                <td>15/01/2025</td> 
-                                <td>Cardiología</td> 
-                                <td>En proceso</td> 
-                                <td> 
-                                    <button class="btn btn-sm btn-outline-primary"> 
-                                        <i class="bi bi-eye"></i> Ver Detalles 
-                                    </button> 
-                                </td> 
-                            </tr> 
-                            
-                            <tr> 
-                                <td>2</td> 
-                                <td>María García Ruiz</td> 
-                                <td>87654321</td> 
-                                <td>32</td> 
-                                <td>20/01/2025</td> 
-                                <td>Pediatría</td> 
-                                <td>En proceso</td> 
-                                <td> 
-                                    <button class="btn btn-sm btn-outline-primary"> 
-                                        <i class="bi bi-eye"></i> Ver Detalles 
-                                    </button> 
-                                </td> 
-                            </tr> 
-                            
-                            <tr> 
-                                <td>3</td> 
-                                <td>Carlos Mendoza Soto</td> 
-                                <td>11223344</td> 
-                                <td>28</td> 
-                                <td>25/01/2025</td> 
-                                <td>Medicina General</td> 
-                                <td>En proceso</td> 
-                                <td> 
-                                    <button class="btn btn-sm btn-outline-primary"> 
-                                        <i class="bi bi-eye"></i> Ver Detalles 
-                                    </button> 
-                                </td> 
-                            </tr> 
-                        </tbody> 
-                    </table> 
-                </div> 
-                
-                <div class="no-results" id="noResults" style="display: none;"> 
-                    <i class="bi bi-inbox" style="font-size: 3rem; color: #6c757d; margin-bottom: 10px;"></i> 
-                    <p>No se encontraron resultados para los filtros seleccionados. Ajuste los parámetros e intente nuevamente.</p> 
-                </div> 
-                
-                <div class="export-buttons"> 
-                    <button class="btn btn-secondary-custom" onclick="exportToPDF()"> <i class="bi bi-file-earmark-pdf"></i> Exportar a PDF </button> 
-                    <button class="btn btn-secondary-custom" onclick="exportToExcel()"> <i class="bi bi-file-earmark-excel"></i> Exportar a Excel </button> 
-                
-                </div> 
-            </div> 
-        </div> 
+    <div class="hero">
+        <h1><i class="bi bi-clipboard-data"></i> Generar Reporte</h1>
+        <p>Consulta la información del hospital de manera dinámica y detallada</p>
     </div>
 
+    <div class="container mt-5 mb-5">
+        <div class="card p-4">
+            <form asp-action="GenerarReporte" method="post" id="formReporte">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Tipo de Reporte</label>
+                    <select class="form-select" id="tipoReporte" name="tipoReporte" required>
+                        <option value="">Seleccione...</option>
+                        <option value="pacientes">Pacientes</option>
+                        <option value="citas">Citas Médicas</option>
+                        <option value="estadisticas">Estadísticas</option>
+                    </select>
+                </div>
 
+                <div id="filtrosDinamicos" class="row g-3"></div>
 
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="submit" class="btn btn-custom me-2">
+                        <i class="bi bi-search"></i> Generar
+                    </button>
+                    <button type="reset" class="btn btn-outline-secondary">
+                        <i class="bi bi-x-circle"></i> Limpiar
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="spinner" class="text-center mt-4">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Cargando...</span>
+            </div>
+            <p class="mt-2 text-muted">Generando reporte...</p>
+        </div>
+
+        <!-- Resultados -->
+        <div class="card mt-4 p-4">
+            <h5 class="text-primary"><i class="bi bi-bar-chart"></i> Resultados del Reporte</h5>
+            <div id="resultado" class="mt-3">
+                @if (ViewBag.TipoReporte == "pacientes")
+                {
+                    if (ViewBag.Resultados != null && ((List<TrabajoFinalGrupo6DBP.Models.Paciente>)ViewBag.Resultados).Count > 0)
+                    {
+                        <table class="table table-bordered table-striped">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>DNI</th>
+                                    <th>Teléfono</th>
+                                    <th>Dirección</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var p in ViewBag.Resultados)
+                                {
+                                    <tr>
+                                        <td>@p.Id_Paciente</td>
+                                        <td>@p.Nombre_Completo_Paciente</td>
+                                        <td>@p.DNI_Paciente</td>
+                                        <td>@p.Telefono_Paciente</td>
+                                        <td>@p.Direccion_Paciente</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p class="text-muted text-center">No se encontraron pacientes.</p>
+                    }
+                }
+                else if (ViewBag.TipoReporte == "citas")
+                {
+                    if (ViewBag.Resultados != null && ((List<TrabajoFinalGrupo6DBP.Models.CitaMedica>)ViewBag.Resultados).Count > 0)
+                    {
+                        <table class="table table-bordered table-striped">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Paciente</th>
+                                    <th>Especialidad</th>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var c in ViewBag.Resultados)
+                                {
+                                    <tr>
+                                        <td>@c.Id_CitaMedica</td>
+                                        <td>@c.Paciente?.Nombre_Completo_Paciente</td>
+                                        <td>@c.Especialidad</td>
+                                        <td>@c.Fecha_CitaMedica.ToShortDateString()</td>
+                                        <td>@c.Hora_CitaMedica</td>
+                                        <td>@c.Estado_CitaMedica</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p class="text-muted text-center">No se encontraron citas.</p>
+                    }
+                }
+                else if (ViewBag.TipoReporte == "estadisticas")
+                {
+                    if (ViewBag.Estadisticas != null)
+                    {
+                        <table class="table table-bordered table-striped">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>Categoría</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var e in ViewBag.Estadisticas)
+                                {
+                                    <tr>
+                                        <td>@e.Categoria</td>
+                                        <td>@e.Total</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p class="text-muted text-center">Seleccione un tipo de estadística.</p>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted text-center"><i class="bi bi-info-circle"></i> Seleccione un tipo de reporte y presione <strong>Generar</strong>.</p>
+                }
+            </div>
+        </div>
+
+        @if (ViewBag.Mensaje != null)
+        {
+            <div class="alert alert-warning mt-4 text-center">
+                <i class="bi bi-exclamation-triangle"></i> @ViewBag.Mensaje
+            </div>
+        }
+    </div>
+
+    <script>
+        const tipoReporte = document.getElementById("tipoReporte");
+        const filtros = document.getElementById("filtrosDinamicos");
+        const spinner = document.getElementById("spinner");
+
+        tipoReporte.addEventListener("change", function () {
+            const tipo = this.value;
+            filtros.innerHTML = "";
+
+            if (tipo === "pacientes") {
+                filtros.innerHTML = `
+                    <div class="col-md-6">
+                        <label class="form-label">Filtro</label>
+                        <select class="form-select" name="filtroPaciente">
+                            <option value="">Seleccione...</option>
+                            <option value="porNombre">Por nombre</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" name="nombrePacienteFiltro" class="form-control" placeholder="Ingrese el nombre">
+                    </div>`;
+            } else if (tipo === "citas") {
+                filtros.innerHTML = `
+                    <div class="col-md-6">
+                        <label class="form-label">Filtro</label>
+                        <select class="form-select" name="filtroCita">
+                            <option value="">Seleccione...</option>
+                            <option value="fecha">Por fecha</option>
+                            <option value="especialidad">Por especialidad</option>
+                            <option value="estado">Por estado</option>
+                            <option value="paciente">Por paciente</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Especialidad</label>
+                        <select class="form-select" name="especialidad">
+                            <option value="">Selecciona una especialidad</option>
+                            <option value="Cardiología">Cardiología</option>
+                            <option value="Pediatría">Pediatría</option>
+                            <option value="Medicina General">Medicina General</option>
+                            <option value="Laboratorio">Laboratorio Clínico</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Estado</label>
+                        <select class="form-select" name="estado">
+                            <option value="">Seleccione...</option>
+                            <option value="Confirmada">Confirmada</option>
+                            <option value="Cancelada">Cancelada</option>
+                            <option value="En proceso">En proceso</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Nombre del Paciente</label>
+                        <input type="text" name="nombrePaciente" class="form-control" placeholder="Ingrese el nombre">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Desde</label>
+                        <input type="date" name="fechaInicio" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Hasta</label>
+                        <input type="date" name="fechaFin" class="form-control">
+                    </div>`;
+            } else if (tipo === "estadisticas") {
+                filtros.innerHTML = `
+                    <div class="col-md-12">
+                        <label class="form-label">Tipo de Estadística</label>
+                        <select class="form-select" name="tipoEstadistica">
+                            <option value="">Seleccione...</option>
+                            <option value="porEspecialidad">Citas por Especialidad</option>
+                            <option value="porEstado">Citas por Estado</option>
+                            <option value="porMes">Citas por Mes</option>
+                        </select>
+                    </div>`;
+            }
+        });
+
+        document.getElementById("formReporte").addEventListener("submit", function () {
+            spinner.style.display = "block";
+        });
+    </script>
 </body>
 </html>

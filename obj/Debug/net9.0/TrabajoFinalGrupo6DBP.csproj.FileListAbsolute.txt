@@ -237,3 +237,4 @@ D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo ba
 D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\obj\Debug\net9.0\compressed\yq02m2gi8e-21l3zx3dbz.gz
 D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\obj\Debug\net9.0\compressed\7c1gfd8v7y-5gj2rk9ng3.gz
 D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\obj\Debug\net9.0\compressed\wna24cpabg-83sam7bouq.gz
+D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\obj\Debug\net9.0\TrabajoFinalGrupo6DBP.sourcelink.json
