@@ -34,7 +34,13 @@
 
         <div class="form-group">
             <label asp-for="Especialidad">Especialidad</label>
-            <input asp-for="Especialidad" class="form-control" placeholder="Ejemplo: Cardiología, Pediatría, etc." />
+            
+            <select asp-for="Especialidad" id="Especialidad" name="Especialidad" class="form-control" required>
+                <option value="Cardiología">Cardiología</option>
+                <option value="Pediatría">Pediatría</option>
+                <option value="Medicina General">Medicina General</option>
+                <option value="Laboratorio Clínico">Laboratorio Clínico</option>
+            </select>
             <span asp-validation-for="Especialidad" class="text-danger"></span>
         </div>
 
