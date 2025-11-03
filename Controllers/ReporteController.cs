@@ -41,8 +41,8 @@ namespace TrabajoFinalGrupo6DBP.Controllers
                     pacientes = pacientes.Where(p => p.Nombre_Completo_Paciente.Contains(nombrePacienteFiltro));
                 }
 
-                ViewBag.TipoReporte = "pacientes";
-                ViewBag.Resultados = pacientes.ToList();
+                ViewBag.TipoReporte = "pacientes"; // Indicar el tipo de reporte
+                ViewBag.Resultados = pacientes.ToList(); // Asignar resultados a ViewBag
                 return View();
             }
 
@@ -50,7 +50,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             {
                 var citas = dbContext.Citas_Medicas
                     .Include(c => c.Paciente)
-                    .AsQueryable();
+                    .AsQueryable(); // Incluir Paciente para filtros    
 
                 if (filtroCita == "fecha" && fechaInicio.HasValue && fechaFin.HasValue)
                 {

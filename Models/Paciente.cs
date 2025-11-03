@@ -24,6 +24,6 @@ namespace TrabajoFinalGrupo6DBP.Models
         public string Direccion_Paciente { get; set; }
 
         // Relación con Cita Médica
-        public ICollection<CitaMedica>? CitasMedicas { get; set; }
+        public ICollection<CitaMedica>? CitasMedicas { get; set; } // Esto es para que un paciente pueda tener múltiples citas médicas
     }
 }

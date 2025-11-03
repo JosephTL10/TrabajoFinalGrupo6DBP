@@ -92,7 +92,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
                 return NotFound();
             }
 
-            return View(paciente);
+            return View(paciente); // retorna la vista de confirmación con los detalles del paciente
         }
 
         [HttpPost]

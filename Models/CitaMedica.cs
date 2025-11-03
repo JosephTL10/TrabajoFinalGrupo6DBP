@@ -10,9 +10,9 @@ namespace TrabajoFinalGrupo6DBP.Models
 
         [Required]
         [ForeignKey("Paciente")]
-        public int PacienteId { get; set; }
+        public int PacienteId { get; set; } // Llave foránea hacia Paciente
 
-        public Paciente? Paciente { get; set; }
+        public Paciente? Paciente { get; set; } // Esto es para que podamos navegar desde CitaMedica hacia Paciente
 
         [Required]
         [DataType(DataType.Date)]
