@@ -111,3 +111,27 @@
 .btn-danger:hover {
     background: #b52b27;
 }
+
+
+
+.tabla-container {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-top: 1rem;
+}
+
+.tabla-pacientes {
+    min-width: 1000px; /* o más si lo deseas */
+    white-space: nowrap;
+}
+
+
+.tabla-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.tabla-container::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 4px;
+}

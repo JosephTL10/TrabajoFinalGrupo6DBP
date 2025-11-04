@@ -41,6 +41,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
                     pacientes = pacientes.Where(p => p.Nombre_Completo_Paciente.Contains(nombrePacienteFiltro));
                 }
 
+
                 ViewBag.TipoReporte = "pacientes"; // Indicar el tipo de reporte
                 ViewBag.Resultados = pacientes.ToList(); // Asignar resultados a ViewBag
                 return View();
