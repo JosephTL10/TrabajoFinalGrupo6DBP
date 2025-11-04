@@ -27,6 +27,5 @@ namespace TrabajoFinalGrupo6DBP.Models
         [DataType(DataType.Password)]
         public string Contrasenia_Usuario { get; set; }  
 
-        
     }
 }

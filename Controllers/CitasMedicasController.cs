@@ -13,14 +13,12 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             this.dbContext = dbContext;
         }
 
-        // LISTAR (con búsqueda opcional)
         [HttpGet]
         public IActionResult ListaCitasMedicas(string? dni)
         {
             var citas = dbContext.Citas_Medicas
                 .Include(c => c.Paciente)
                 .AsQueryable();
-
             if (!string.IsNullOrEmpty(dni))
             {
                 citas = citas.Where(c => c.Paciente.DNI_Paciente.ToString().Contains(dni));
@@ -43,7 +41,6 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             {
                 return View(cita);
             }
-
             dbContext.Citas_Medicas.Add(cita);
             dbContext.SaveChanges();
 
@@ -59,7 +56,6 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             {
                 return NotFound();
             }
-
             return View(cita);
         }
 
@@ -70,14 +66,11 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             {
                 return View(cita);
             }
-
             dbContext.Citas_Medicas.Update(cita);
             dbContext.SaveChanges();
-
             return RedirectToAction("ListaCitasMedicas");
         }
 
-        // ELIMINAR
         [HttpGet]
         public IActionResult EliminarCitaPaciente(int id)
         {
@@ -89,7 +82,6 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             {
                 return NotFound();
             }
-
             return View(cita);
         }
 
@@ -102,7 +94,6 @@ namespace TrabajoFinalGrupo6DBP.Controllers
                 dbContext.Citas_Medicas.Remove(cita);
                 dbContext.SaveChanges();
             }
-
             return RedirectToAction("ListaCitasMedicas");
         }
     }

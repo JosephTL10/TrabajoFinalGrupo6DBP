@@ -19,13 +19,11 @@ public class HomeController : Controller
         dbContext = context;
     }
 
-    
 
     public IActionResult Index()
     {
         return View();
     }
-
 
     public IActionResult Inicio()
     {
@@ -41,7 +39,6 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult Registro()
     {
-        
         return View();
     }
 
@@ -64,7 +61,6 @@ public class HomeController : Controller
                 ViewBag.Mensaje = "Registro exitoso. Ahora puedes iniciar sesión.";
                 return RedirectToAction("Login");
             }
-
             return View();
     }
 
@@ -72,7 +68,6 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult Login()
     {
-
         return View();
     }
 
@@ -118,11 +113,9 @@ public class HomeController : Controller
     }
 
 
-
     [HttpGet]
     public IActionResult CambiarContrasenia()
     {
-    
         if (TempData["CorreoRecuperacion"] == null)
         {
             return RedirectToAction("RecuperarContrasenia");
@@ -160,14 +153,8 @@ public class HomeController : Controller
         ModelState.AddModelError(string.Empty, "Error al cambiar la contraseña.");
         
         return View();
-
     }
     
-
-
-
-
-
 
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
