@@ -4,47 +4,66 @@
     ViewData["Title"] = "Editar Médico";
 }
 
-<h2>Editar Médico</h2>
+@section Styles {
+    <link rel="stylesheet" href="~/css/EditarMedico.css" />
+}
 
-<form asp-action="EditarMedico" method="post" class="mt-3">
-    @Html.HiddenFor(m => m.Id_Medico)
 
-    <div class="mb-3">
-        <label>DNI</label>
-        <input asp-for="DNI_Medico" class="form-control" />
+
+<div class="container-editar">
+    <h2>Editar Médico</h2>
+
+    <div class="alert alert-warning">
+        <p>
+            ⚠️ ¿Está seguro que desea editar la información de este médico?  
+            No es recomendable si tiene citas médicas pendientes.  
+            <strong>Esta acción no se puede deshacer.</strong>
+        </p>
     </div>
 
-    <div class="mb-3">
-        <label>Nombre Completo</label>
-        <input asp-for="Nombre_Completo_Medico" class="form-control" />
-    </div>
+    <form asp-action="EditarMedico" method="post">
+        @Html.HiddenFor(m => m.Id_Medico)
 
-    <div class="mb-3">
-        
+        <div class="form-group">
+            <label for="dni">DNI</label>
+            <input asp-for="DNI_Medico" class="form-control" id="dni" placeholder="Ingrese el DNI del médico" />
+            <span asp-validation-for="DNI_Medico" class="text-danger"></span>
+        </div>
 
-        <label class="form-label">Especialidad</label>
-        <select class="form-select" asp-for="Especialidad" name="especialidad">
-            <option value="">Selecciona una especialidad</option>
-            <option value="Cardiología">Cardiología</option>
-            <option value="Pediatría">Pediatría</option>
-            <option value="Medicina General">Medicina General</option>
-            <option value="Laboratorio Clínico">Laboratorio Clínico</option>
-        </select>
+        <div class="form-group">
+            <label for="nombre">Nombre Completo</label>
+            <input asp-for="Nombre_Completo_Medico" class="form-control" id="nombre" placeholder="Ingrese el nombre completo" />
+            <span asp-validation-for="Nombre_Completo_Medico" class="text-danger"></span>
+        </div>
 
-        
-        
-    </div>
+        <div class="form-group">
+            <label for="especialidad">Especialidad</label>
+            <select asp-for="Especialidad" class="form-select" id="especialidad" name="especialidad">
+                <option value="">Selecciona una especialidad</option>
+                <option value="Cardiología">Cardiología</option>
+                <option value="Pediatría">Pediatría</option>
+                <option value="Medicina General">Medicina General</option>
+                <option value="Laboratorio Clínico">Laboratorio Clínico</option>
+            </select>
+            <span asp-validation-for="Especialidad" class="text-danger"></span>
+        </div>
 
-    <div class="mb-3">
-        <label>Teléfono</label>
-        <input asp-for="Telefono_Medico" class="form-control" />
-    </div>
+        <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input asp-for="Telefono_Medico" class="form-control" id="telefono" placeholder="Ingrese el teléfono" />
+            <span asp-validation-for="Telefono_Medico" class="text-danger"></span>
+        </div>
 
-    <div class="mb-3">
-        <label>Correo</label>
-        <input asp-for="Correo_Medico" class="form-control" />
-    </div>
+        <div class="form-group">
+            <label for="correo">Correo Electrónico</label>
+            <input asp-for="Correo_Medico" class="form-control" id="correo" type="email" placeholder="Ingrese el correo electrónico" />
+            <span asp-validation-for="Correo_Medico" class="text-danger"></span>
+        </div>
 
-    <button type="submit" class="btn btn-primary">Guardar cambios</button>
-    <a asp-action="ListaMedicos" class="btn btn-secondary">Cancelar</a>
-</form>
+        <div class="botones">
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <a asp-action="ListaMedicos" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+

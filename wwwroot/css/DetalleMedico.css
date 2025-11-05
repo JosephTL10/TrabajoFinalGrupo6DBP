@@ -1,0 +1,185 @@
+/* === Fondo y tipografía general === */
+body {
+    background: linear-gradient(180deg, #e6f4ff, #f8fbff);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1e3a5f;
+    margin: 0;
+    padding: 0;
+}
+
+/* === Contenedor principal === */
+.container-detalle {
+    max-width: 900px;
+    margin: 50px auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 102, 204, 0.15);
+    padding: 35px;
+}
+
+/* === Título principal === */
+.container-detalle h2 {
+    text-align: center;
+    color: #007bff;
+    font-size: 1.9rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+/* === Tarjeta de información del médico === */
+.card {
+    border: none;
+    border-radius: 10px;
+    background: #f9fcff;
+    box-shadow: 0 2px 10px rgba(0, 102, 204, 0.1);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 18px rgba(0, 102, 204, 0.2);
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.card-body h4 {
+    color: #004085;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.card-body p {
+    font-size: 1rem;
+    margin: 5px 0;
+    color: #333;
+}
+
+/* === Título secundario === */
+.container-detalle h4 {
+    color: #0056b3;
+    font-weight: 600;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #cce5ff;
+    display: inline-block;
+    padding-bottom: 4px;
+}
+
+/* === Tabla de horarios === */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.95rem;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table thead {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.table th, .table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #e1e7ef;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f8faff;
+}
+
+.table tr:hover {
+    background-color: #e8f2ff;
+}
+
+/* === Botones === */
+.btn {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    margin: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+/* Botones principales */
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+}
+
+/* Botón secundario */
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #555d63;
+}
+
+/* Botones de acciones en tabla */
+.btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-outline-primary {
+    border: 1px solid #007bff;
+    color: #007bff;
+    background: transparent;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* === Texto de estado o vacío === */
+.text-muted {
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* === Responsividad === */
+@media (max-width: 768px) {
+    .container-detalle {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .table th, .table td {
+        padding: 8px 6px;
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        width: 100%;
+        margin: 6px 0;
+    }
+}

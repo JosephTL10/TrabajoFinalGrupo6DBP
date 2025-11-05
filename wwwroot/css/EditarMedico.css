@@ -1,0 +1,165 @@
+/* ======== Fondo general ======== */
+body {
+    background: linear-gradient(180deg, #e8f5ff, #f5fbff);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1e3a5f;
+    margin: 0;
+    padding: 0;
+}
+
+/* ======== Contenedor principal ======== */
+.container-editar {
+    max-width: 750px;
+    margin: 60px auto;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 35px;
+    box-shadow: 0 6px 25px rgba(0, 123, 255, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container-editar:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(0, 123, 255, 0.25);
+}
+
+/* ======== Título ======== */
+.container-editar h2 {
+    text-align: center;
+    color: #007bff;
+    font-size: 1.9rem;
+    font-weight: 650;
+    margin-bottom: 25px;
+    text-shadow: 0 1px 3px rgba(0, 123, 255, 0.2);
+}
+
+/* ======== Advertencia ======== */
+.alert {
+    max-width: 720px;
+    margin: 0 auto 25px auto;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+    box-shadow: 0 3px 10px rgba(255, 193, 7, 0.2);
+}
+
+/* ======== Campos del formulario ======== */
+.form-group, .mb-3 {
+    margin-bottom: 20px;
+}
+
+label, .form-label {
+    display: block;
+    color: #004085;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-control, .form-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cce5ff;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f9fcff;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
+    outline: none;
+}
+
+/* ======== Mensaje de error ======== */
+.text-danger {
+    color: #dc3545;
+    font-size: 0.9rem;
+}
+
+/* ======== Botones ======== */
+.btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    text-decoration: none;
+    margin: 10px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    border: none;
+}
+
+/* Botón principal */
+.btn-primary {
+    background: linear-gradient(135deg, #007bff, #0062cc);
+    color: #fff;
+    box-shadow: 0 3px 8px rgba(0, 123, 255, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0062cc, #004eaa);
+    box-shadow: 0 5px 14px rgba(0, 123, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Botón cancelar */
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+    color: #fff;
+    box-shadow: 0 3px 8px rgba(108, 117, 125, 0.3);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #555d63, #464e53);
+    box-shadow: 0 5px 14px rgba(108, 117, 125, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ======== Responsividad ======== */
+@media (max-width: 768px) {
+    .container-editar {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .btn {
+        width: 90%;
+        margin: 10px 0;
+        font-size: 0.95rem;
+    }
+
+    .container-editar h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container-editar {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .form-control, .form-select {
+        font-size: 0.95rem;
+        padding: 8px 10px;
+    }
+
+    .btn {
+        width: 100%;
+        margin: 8px 0;
+    }
+
+    .alert {
+        width: 95%;
+        font-size: 0.9rem;
+    }
+}

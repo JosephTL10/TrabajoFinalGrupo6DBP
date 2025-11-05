@@ -1,0 +1,57 @@
+@model IEnumerable<TrabajoFinalGrupo6DBP.Models.CitaMedica>
+
+@{
+    ViewData["Title"] = "Citas del Horario";
+    var horario = ViewBag.Horario as TrabajoFinalGrupo6DBP.Models.HorarioMedico;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/VerCitasDeHorarioMedico.css" />
+}
+
+<div class="container-citas">
+    <h2>Citas del Horario</h2>
+
+    <div class="alert alert-info">
+        <strong>Médico:</strong> @horario.Medico?.Nombre_Completo_Medico <br />
+        <strong>Día:</strong> @horario.DiaSemana <br />
+        <strong>Horario:</strong> @horario.Hora_Inicio - @horario.Hora_Fin
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning">
+            No hay citas registradas en este horario.
+        </div>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Paciente</th>
+                    <th>Especialidad</th>
+                    <th>Estado</th>
+                    <th>Observaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cita in Model)
+                {
+                    <tr>
+                        <td>@cita.Fecha_CitaMedica.ToShortDateString()</td>
+                        <td>@cita.Hora_CitaMedica</td>
+                        <td>@cita.Paciente?.Nombre_Completo_Paciente</td>
+                        <td>@cita.Especialidad</td>
+                        <td>@cita.Estado_CitaMedica</td>
+                        <td>@cita.Observaciones</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <a asp-action="ListaHorariosMedicos" class="btn">Volver</a>
+</div>

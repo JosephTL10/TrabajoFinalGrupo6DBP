@@ -1,0 +1,194 @@
+/* === TARJETA PRINCIPAL === */
+.medicos-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 2200px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.medicos-card:hover {
+    transform: translateY(-3px);
+}
+
+.medicos-card h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #003366;
+    border-left: 5px solid #007bff;
+    padding-left: 10px;
+}
+
+/* === BOTÓN PRINCIPAL === */
+.btn-registrar {
+    display: inline-block;
+    background: #007bff;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+}
+
+.btn-registrar:hover {
+    background: #0056b3;
+}
+
+/* === CONTENEDOR DE TABLA === */
+.tabla-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+/* === TABLA === */
+.tabla-medicos {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fafafa;
+    font-size: 0.95rem;
+    min-width: 1000px;
+    white-space: nowrap;
+}
+
+.tabla-medicos thead {
+    background: linear-gradient(90deg, #0066cc, #0099ff);
+    color: white;
+}
+
+.tabla-medicos th,
+.tabla-medicos td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabla-medicos tbody tr:hover {
+    background: #f1f9ff;
+}
+
+/* === BADGES DE ESTADO === */
+.badge {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.bg-success {
+    background-color: #28a745 !important;
+    color: white;
+}
+
+.bg-danger {
+    background-color: #dc3545 !important;
+    color: white;
+}
+
+/* === BOTONES DE ACCIÓN === */
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+    margin-right: 5px;
+}
+
+.btn-info {
+    background: #007bff;
+}
+
+.btn-info:hover {
+    background: #0056b3;
+}
+
+.btn-warning {
+    background: #f0ad4e;
+}
+
+.btn-warning:hover {
+    background: #d68910;
+}
+
+.btn-danger {
+    background: #d9534f;
+}
+
+.btn-danger:hover {
+    background: #b52b27;
+}
+
+.btn-success {
+    background: #28a745;
+}
+
+.btn-success:hover {
+    background: #1e7e34;
+}
+
+.btn-secondary {
+    background: #6c757d;
+}
+
+.btn-secondary:hover {
+    background: #565e64;
+}
+
+/* === SCROLL PERSONALIZADO === */
+.tabla-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.tabla-container::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 4px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+    .medicos-card {
+        padding: 1rem;
+        max-width: 100%;
+    }
+
+    .medicos-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .tabla-medicos {
+        font-size: 0.85rem;
+        min-width: 800px;
+    }
+
+    .btn {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    .medicos-card {
+        padding: 0.8rem;
+    }
+
+    .tabla-medicos {
+        min-width: 700px;
+    }
+
+    th, td {
+        font-size: 0.7rem;
+        padding: 8px;
+    }
+
+    .btn {
+        font-size: 0.7rem;
+        margin-bottom: 3px;
+    }
+}

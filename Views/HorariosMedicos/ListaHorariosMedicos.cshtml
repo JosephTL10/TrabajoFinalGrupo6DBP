@@ -4,35 +4,44 @@
     ViewData["Title"] = "Lista de Horarios de Médicos";
 }
 
-<h2 class="mb-4">Lista de Horarios</h2>
+@section Styles {
+    <link rel="stylesheet" href="~/css/ListaHorariosMedicos.css" />
+}
 
-<a asp-action="RegistrarHorarioMedico" class="btn btn-primary mb-3">Registrar nuevo horario</a>
+<div class="horarios-card">
+    <h2>Lista de Horarios</h2>
 
-<table class="table table-bordered table-striped">
-    <thead class="table-dark">
-        <tr>
-            <th>Médico</th>
-            <th>Especialidad</th>
-            <th>Día</th>
-            <th>Hora Inicio</th>
-            <th>Hora Fin</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var h in Model)
-        {
-            <tr>
-                <td>@h.Medico?.Nombre_Completo_Medico</td>
-                <td>@h.Medico?.Especialidad</td>
-                <td>@h.DiaSemana</td>
-                <td>@h.Hora_Inicio</td>
-                <td>@h.Hora_Fin</td>
-                <td>
-                    <a asp-action="EditarHorarioMedico" asp-route-id="@h.Id_Horario" class="btn btn-sm btn-warning">Editar</a>
-                    <a asp-action="EliminarHorarioMedico" asp-route-id="@h.Id_Horario" class="btn btn-sm btn-danger">Eliminar</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <a asp-action="RegistrarHorarioMedico" class="btn btn-primary">Registrar nuevo horario</a>
+
+    <div class="tabla-container">
+        <table class="tabla-horarios">
+            <thead>
+                <tr>
+                    <th>Médico</th>
+                    <th>Especialidad</th>
+                    <th>Día</th>
+                    <th>Hora Inicio</th>
+                    <th>Hora Fin</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var h in Model)
+                {
+                    <tr>
+                        <td>@h.Medico?.Nombre_Completo_Medico</td>
+                        <td>@h.Medico?.Especialidad</td>
+                        <td>@h.DiaSemana</td>
+                        <td>@h.Hora_Inicio</td>
+                        <td>@h.Hora_Fin</td>
+                        <td>
+                            <a asp-action="EditarHorarioMedico" asp-route-id="@h.Id_Horario" class="btn btn-warning btn-sm">Editar</a>
+                            <a asp-action="EliminarHorarioMedico" asp-route-id="@h.Id_Horario" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a asp-action="VerCitasDeHorarioMedico" asp-route-id="@h.Id_Horario" class="btn btn-info btn-sm">Ver Citas</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

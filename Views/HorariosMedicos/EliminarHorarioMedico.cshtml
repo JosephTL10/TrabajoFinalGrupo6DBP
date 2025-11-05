@@ -4,16 +4,23 @@
     ViewData["Title"] = "Eliminar Horario";
 }
 
-<h3>¿Seguro que deseas eliminar este horario?</h3>
 
-<div class="alert alert-warning">
-    <p><strong>Médico:</strong> @Model.Medico?.Nombre_Completo_Medico</p>
-    <p><strong>Día:</strong> @Model.DiaSemana</p>
-    <p><strong>Hora:</strong> @Model.Hora_Inicio - @Model.Hora_Fin</p>
+@section Styles {
+    <link rel="stylesheet" href="~/css/EliminarHorarioMedico.css" />
+}
+
+<div class="eliminar-horario-card">
+    <h3>¿Seguro que deseas eliminar este horario?</h3>
+
+    <div class="alert alert-warning">
+        <p><strong>Médico:</strong> @Model.Medico?.Nombre_Completo_Medico</p>
+        <p><strong>Día:</strong> @Model.DiaSemana</p>
+        <p><strong>Hora:</strong> @Model.Hora_Inicio - @Model.Hora_Fin</p>
+    </div>
+
+    <form asp-action="EliminarHorarioMedicoConfirmado" method="post">
+        <input type="hidden" asp-for="Id_Horario" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-action="ListaHorariosMedicos" class="btn btn-secondary">Cancelar</a>
+    </form>
 </div>
-
-<form asp-action="EliminarHorarioMedicoConfirmado" method="post">
-    <input type="hidden" asp-for="Id_Horario" />
-    <button type="submit" class="btn btn-danger">Eliminar</button>
-    <a asp-action="ListaHorariosMedicos" class="btn btn-secondary">Cancelar</a>
-</form>

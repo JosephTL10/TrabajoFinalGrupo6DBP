@@ -93,18 +93,55 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             return View(horario);
         }
 
-        // ❌ ELIMINAR HORARIO - POST
         [HttpPost]
-        public IActionResult EliminarHorarioMedicoConfirmado(int id)
+        public IActionResult EliminarHorarioMedicoConfirmado(HorarioMedico horario)
         {
-            var horario = dbContext.Horarios_Medicos.Find(id);
-            if (horario != null)
+            var horarioDb = dbContext.Horarios_Medicos.Find(horario.Id_Horario);
+            if (horarioDb != null)
             {
-                dbContext.Horarios_Medicos.Remove(horario);
+                dbContext.Horarios_Medicos.Remove(horarioDb);
                 dbContext.SaveChanges();
             }
 
-            return RedirectToAction("ListaHorariosMedicos");
+            return RedirectToAction("DetalleMedico", "Medicos", new { id = horarioDb.MedicoId });
+
         }
+
+
+
+
+        [HttpGet]
+        public IActionResult VerCitasDeHorarioMedico(int id)
+        {
+            var horario = dbContext.Horarios_Medicos
+                .Include(h => h.Medico)
+                .FirstOrDefault(h => h.Id_Horario == id);
+
+            if (horario == null)
+                return NotFound();
+
+            // Traemos las citas del médico y luego filtramos en memoria
+            var citas = dbContext.Citas_Medicas
+                .Include(c => c.Paciente)
+                .Include(c => c.Medico)
+                .Where(c => c.MedicoId == horario.MedicoId)
+                .AsEnumerable() // 👈 Esto hace que el resto del filtro se ejecute en memoria
+                .Where(c =>
+                    {
+                        string diaCita = c.Fecha_CitaMedica.ToString("dddd", new System.Globalization.CultureInfo("es-ES"));
+                            return diaCita.Equals(horario.DiaSemana, StringComparison.OrdinalIgnoreCase)
+                                && c.Hora_CitaMedica >= horario.Hora_Inicio
+                                && c.Hora_CitaMedica <= horario.Hora_Fin;
+                    })
+                    .OrderBy(c => c.Fecha_CitaMedica)
+                    .ThenBy(c => c.Hora_CitaMedica)
+                    .ToList();
+
+            ViewBag.Horario = horario;
+            return View(citas);
+        }
+
+
+
     }
 }

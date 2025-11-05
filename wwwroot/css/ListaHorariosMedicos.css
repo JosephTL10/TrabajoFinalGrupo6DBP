@@ -1,0 +1,175 @@
+/* ===== Fondo general ===== */
+body {
+    background: linear-gradient(180deg, #e8f4ff, #f9fcff);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1e3a5f;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== Contenedor principal ===== */
+.horarios-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 2rem;
+    margin: 2.5rem auto;
+    max-width: 1300px;
+    box-shadow: 0 4px 18px rgba(0, 123, 255, 0.12);
+    transition: transform 0.2s ease-in-out;
+}
+
+.horarios-card:hover {
+    transform: translateY(-4px);
+}
+
+/* ===== Título ===== */
+.horarios-card h2 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #003366;
+    margin-bottom: 1.5rem;
+    border-left: 6px solid #007bff;
+    padding-left: 12px;
+}
+
+/* ===== Botón registrar ===== */
+.horarios-card .btn-primary {
+    background: linear-gradient(90deg, #007bff, #00a2ff);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.horarios-card .btn-primary:hover {
+    background: linear-gradient(90deg, #0062cc, #0088dd);
+    transform: scale(1.04);
+}
+
+/* ===== Contenedor con scroll ===== */
+.tabla-container {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-top: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 123, 255, 0.1);
+}
+
+/* ===== Estilo de la tabla ===== */
+.tabla-horarios {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    min-width: 950px;
+    white-space: nowrap;
+    font-size: 0.95rem;
+}
+
+.tabla-horarios thead {
+    background: linear-gradient(90deg, #0066cc, #0099ff);
+    color: white;
+    font-weight: 600;
+}
+
+.tabla-horarios th,
+.tabla-horarios td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #dce9ff;
+}
+
+.tabla-horarios tbody tr:hover {
+    background: #f1f9ff;
+    transition: background 0.3s ease;
+}
+
+/* ===== Botones ===== */
+.btn {
+    display: inline-block;
+    padding: 7px 13px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    margin-right: 6px;
+    transition: all 0.3s ease-in-out;
+    border: none;
+}
+
+.btn-warning {
+    background: #f0ad4e;
+}
+.btn-warning:hover {
+    background: #d68910;
+    transform: scale(1.05);
+}
+
+.btn-danger {
+    background: #d9534f;
+}
+.btn-danger:hover {
+    background: #b52b27;
+    transform: scale(1.05);
+}
+
+.btn-info {
+    background: #007bff;
+}
+.btn-info:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+/* ===== Scroll personalizado ===== */
+.tabla-container::-webkit-scrollbar {
+    height: 10px;
+}
+.tabla-container::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 6px;
+}
+.tabla-container::-webkit-scrollbar-thumb:hover {
+    background: #0056b3;
+}
+.tabla-container::-webkit-scrollbar-track {
+    background: #e0f0ff;
+    border-radius: 6px;
+}
+
+/* ===== Responsividad ===== */
+@media (max-width: 768px) {
+    .horarios-card {
+        width: 92%;
+        padding: 1.5rem;
+    }
+
+    .horarios-card h2 {
+        font-size: 1.6rem;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 500px) {
+    .tabla-horarios {
+        font-size: 0.85rem;
+    }
+
+    .tabla-horarios th,
+    .tabla-horarios td {
+        padding: 8px;
+    }
+}

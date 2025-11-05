@@ -1,0 +1,104 @@
+/* ===== Estilo general ===== */
+body {
+    background: linear-gradient(180deg, #e8f4ff, #f9fcff);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1e3a5f;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== Contenedor principal ===== */
+.container-horario {
+    max-width: 650px;
+    margin: 60px auto;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 123, 255, 0.15);
+    padding: 35px 40px;
+}
+
+/* ===== Título ===== */
+.container-horario h2 {
+    text-align: center;
+    color: #007bff;
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+/* ===== Campos del formulario ===== */
+form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #004085;
+}
+
+form .form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cce5ff;
+    border-radius: 8px;
+    background-color: #f9fcff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    margin-bottom: 18px;
+}
+
+form .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+/* ===== Botones ===== */
+form .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+}
+
+/* Botón principal */
+form .btn-success {
+    background: linear-gradient(90deg, #28a745, #34ce57);
+    color: #ffffff;
+}
+
+form .btn-success:hover {
+    background: linear-gradient(90deg, #218838, #2eb84a);
+    transform: scale(1.03);
+}
+
+/* Botón secundario */
+form .btn-secondary {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+form .btn-secondary:hover {
+    background-color: #555d63;
+    transform: scale(1.02);
+}
+
+/* ===== Responsividad ===== */
+@media (max-width: 768px) {
+    .container-horario {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .container-horario h2 {
+        font-size: 1.6rem;
+    }
+
+    form .btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

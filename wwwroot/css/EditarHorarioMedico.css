@@ -1,0 +1,120 @@
+.editar-horario-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 2.5rem;
+    margin: 3rem auto;
+    max-width: 700px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.editar-horario-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.editar-horario-card h2 {
+    color: #004aad;
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border-left: 6px solid #007bff;
+    padding-left: 12px;
+}
+
+/* Campos de formulario */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.form-control,
+.form-select {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 10px 14px;
+    font-size: 1rem;
+    background-color: #fafafa;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+    background-color: #fff;
+}
+
+/* Texto de validación */
+.text-danger {
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+}
+
+/* Botones */
+.btn {
+    display: inline-block;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.15s ease-in-out;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: scale(1.05);
+}
+
+/* Contenedor general */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    .editar-horario-card {
+        max-width: 95%;
+        padding: 1.8rem;
+    }
+
+    .editar-horario-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .text-center.mt-4 {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

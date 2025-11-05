@@ -1,56 +1,62 @@
-@model IEnumerable<TrabajoFinalGrupo6DBP.Models.Medico>
-
 @{
     ViewData["Title"] = "Lista de Médicos";
 }
 
-<h2 class="mb-4">Lista de Médicos</h2>
+@section Styles {
+    <link rel="stylesheet" href="~/css/ListaMedicos.css" />
+}
 
-<a asp-action="RegistrarMedico" class="btn btn-primary mb-3">Registrar nuevo médico</a>
+<div class="medicos-card">
+    <h2>Lista de Médicos</h2>
 
-<table class="table table-bordered table-striped">
-    <thead class="table-dark">
-        <tr>
-            <th>Nombre</th>
-            <th>DNI</th>
-            <th>Especialidad</th>
-            <th>Teléfono</th>
-            <th>Correo</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var m in Model)
-        {
-            <tr>
-                <td>@m.Nombre_Completo_Medico</td>
-                <td>@m.DNI_Medico</td>
-                <td>@m.Especialidad</td>
-                <td>@m.Telefono_Medico</td>
-                <td>@m.Correo_Medico</td>
-                <td>
-                    @if (m.Estado_Medico)
-                    {
-                        <span class="badge bg-success">Activo</span>
-                    }
-                    else
-                    {
-                        <span class="badge bg-danger">Inactivo</span>
-                    }
-                </td>
-                <td>
-                    <a asp-action="DetalleMedico" asp-route-id="@m.Id_Medico" class="btn btn-sm btn-info text-white">Ver detalles</a>
-                    <a asp-action="EditarMedico" asp-route-id="@m.Id_Medico" class="btn btn-sm btn-warning">Editar</a>
-                    <a asp-action="EliminarMedico" asp-route-id="@m.Id_Medico" class="btn btn-sm btn-danger">Eliminar</a>
-                    <form asp-action="CambiarEstado" method="post" style="display:inline;">
-                        <input type="hidden" name="id" value="@m.Id_Medico" />
-                        <button type="submit" class="btn btn-sm @(m.Estado_Medico ? "btn-secondary" : "btn-success")">
-                            @(m.Estado_Medico ? "Desactivar" : "Activar")
-                        </button>
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <a asp-action="RegistrarMedico" class="btn-registrar">Registrar nuevo médico</a>
+
+    <div class="tabla-container">
+        <table class="tabla-medicos">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>DNI</th>
+                    <th>Especialidad</th>
+                    <th>Teléfono</th>
+                    <th>Correo</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var m in Model)
+                {
+                    <tr>
+                        <td>@m.Nombre_Completo_Medico</td>
+                        <td>@m.DNI_Medico</td>
+                        <td>@m.Especialidad</td>
+                        <td>@m.Telefono_Medico</td>
+                        <td>@m.Correo_Medico</td>
+                        <td>
+                            @if (m.Estado_Medico)
+                            {
+                                <span class="badge bg-success">Activo</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Inactivo</span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="DetalleMedico" asp-route-id="@m.Id_Medico" class="btn btn-info">Ver</a>
+                            <a asp-action="EditarMedico" asp-route-id="@m.Id_Medico" class="btn btn-warning">Editar</a>
+                            <a asp-action="EliminarMedico" asp-route-id="@m.Id_Medico" class="btn btn-danger">Eliminar</a>
+                            <form asp-action="CambiarEstado" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@m.Id_Medico" />
+                                <button type="submit" class="btn @(m.Estado_Medico ? "btn-secondary" : "btn-success")">
+                                    @(m.Estado_Medico ? "Desactivar" : "Activar")
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
