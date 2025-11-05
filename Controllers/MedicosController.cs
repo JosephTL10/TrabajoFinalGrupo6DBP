@@ -13,7 +13,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             this.dbContext = dbcontext;
         }
 
-        // 📋 LISTAR MÉDICOS
+        
         public IActionResult ListaMedicos()
         {
             var medicos = dbContext.Medicos
@@ -23,14 +23,14 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             return View(medicos);
         }
 
-        // 🆕 REGISTRAR MÉDICO - GET
+        
         [HttpGet]
         public IActionResult RegistrarMedico()
         {
             return View();
         }
 
-        // 🆕 REGISTRAR MÉDICO - POST
+        
         [HttpPost]
         public IActionResult RegistrarMedico(Medico medico)
         {
@@ -52,7 +52,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
 
         }
 
-        // ✏️ EDITAR MÉDICO - GET
+        
         [HttpGet]
         public IActionResult EditarMedico(int id)
         {
@@ -63,7 +63,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             return View(medico);
         }
 
-        // ✏️ EDITAR MÉDICO - POST
+        
         [HttpPost]
         public IActionResult EditarMedico(Medico medico)
         {
@@ -76,7 +76,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             return RedirectToAction("ListaMedicos");
         }
 
-        // ❌ ELIMINAR MÉDICO - GET (Confirmación)
+        
         [HttpGet]
         public IActionResult EliminarMedico(int id)
         {
@@ -89,7 +89,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
 
 
 
-        // ❌ ELIMINAR MÉDICO - POST
+        
         [HttpPost]
         public IActionResult EliminarMedicoConfirmado(int id)
         {
@@ -118,7 +118,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
 
 
 
-        // 🔄 ACTIVAR / DESACTIVAR MÉDICO
+        
         [HttpPost]
         public IActionResult CambiarEstado(int id)
         {
@@ -136,7 +136,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
 
 
 
-        // 📘 DETALLE DEL MÉDICO CON SUS HORARIOS
+        
         public IActionResult DetalleMedico(int id)
         {
             

@@ -15,7 +15,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             this.dbContext = dbcontext;
         }
 
-        // 🔹 Médicos por especialidad
+        // Médicos por especialidad
         [HttpGet("medicos/porEspecialidad")]
         public IActionResult GetMedicosPorEspecialidad(string especialidad)
         {
@@ -27,7 +27,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             return Ok(medicos);
         }
 
-        // 🔹 Horarios por médico
+        // Horarios por médico
         [HttpGet("horarios/porMedico")]
         public IActionResult GetHorariosPorMedico(int id)
         {

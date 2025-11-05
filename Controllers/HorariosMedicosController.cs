@@ -14,7 +14,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             this.dbContext = dbcontext;
         }
 
-        // 📋 LISTAR HORARIOS
+        // LISTAR HORARIOS
         public IActionResult ListaHorariosMedicos()
         {
             var horarios = dbContext.Horarios_Medicos
@@ -26,7 +26,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             return View(horarios);
         }
 
-        // 🆕 REGISTRAR HORARIO - GET
+        
         [HttpGet]
         public IActionResult RegistrarHorarioMedico(int? medicoId)
         {
@@ -34,7 +34,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             return View();
         }
 
-        // 🆕 REGISTRAR HORARIO - POST
+        
         [HttpPost]
         public IActionResult RegistrarHorarioMedico(HorarioMedico horario)
         {
@@ -52,7 +52,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
         }
 
 
-        // ✏️ EDITAR HORARIO - GET
+        
         [HttpGet]
         public IActionResult EditarHorarioMedico(int id)
         {
@@ -64,7 +64,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             return View(horario);
         }
 
-        // ✏️ EDITAR HORARIO - POST
+        
         [HttpPost]
         public IActionResult EditarHorarioMedico(HorarioMedico horario)
         {
@@ -79,7 +79,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             return RedirectToAction("ListaHorariosMedicos");
         }
 
-        // ❌ ELIMINAR HORARIO - GET (Confirmación)
+        
         [HttpGet]
         public IActionResult EliminarHorarioMedico(int id)
         {
