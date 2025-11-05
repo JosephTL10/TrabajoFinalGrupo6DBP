@@ -13,7 +13,7 @@
 @if (Model == null)
 {
     <p>No se encontró la cita médica.</p>
-    <a href="@Url.Action("ListaCitasMedicas", "CitasMedicas")" class="btn btn-secondary">Volver a la lista</a>
+    <a href="@Url.Action("ListaCitasMedicas", controller: "CitasMedicas")" class="btn btn-secondary">Volver a la lista</a>
 }
 else
 {

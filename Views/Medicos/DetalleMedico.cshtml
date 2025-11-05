@@ -1,0 +1,55 @@
+@model TrabajoFinalGrupo6DBP.Models.Medico
+
+@{
+    ViewData["Title"] = "Detalle del Médico";
+}
+
+<h2>Detalle del Médico</h2>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h4>@Model.Nombre_Completo_Medico</h4>
+        <p><strong>Especialidad:</strong> @Model.Especialidad</p>
+        <p><strong>DNI:</strong> @Model.DNI_Medico</p>
+        <p><strong>Teléfono:</strong> @Model.Telefono_Medico</p>
+        <p><strong>Correo:</strong> @Model.Correo_Medico</p>
+        <p><strong>Estado:</strong> @(Model.Estado_Medico ? "Activo" : "Inactivo")</p>
+    </div>
+</div>
+
+<h4>Horarios de atención</h4>
+
+@if (Model.Horarios != null && Model.Horarios.Any())
+{
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Día</th>
+                <th>Hora Inicio</th>
+                <th>Hora Fin</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var h in Model.Horarios.OrderBy(h => h.DiaSemana))
+        {
+            <tr>
+                <td>@h.DiaSemana</td>
+                <td>@h.Hora_Inicio</td>
+                <td>@h.Hora_Fin</td>
+                <td>
+                    <a asp-controller="HorariosMedicos" asp-action="EditarHorarioMedico" asp-route-id="@h.Id_Horario" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-controller="HorariosMedicos" asp-action="EliminarHorarioMedico" asp-route-id="@h.Id_Horario" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="text-muted">Este médico no tiene horarios registrados.</p>
+}
+
+<a asp-controller="HorariosMedicos" asp-action="RegistrarHorarioMedico" asp-route-medicoId="@Model.Id_Medico" class="btn btn-primary">Agregar horario</a>
+<a asp-action="ListaMedicos" class="btn btn-secondary">Volver</a>

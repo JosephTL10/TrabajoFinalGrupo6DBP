@@ -14,6 +14,10 @@ namespace TrabajoFinalGrupo6DBP
 
         public DbSet<Paciente> Pacientes { get; set; }
 
+        public DbSet<Medico> Medicos { get; set; }
+
+        public DbSet<HorarioMedico> Horarios_Medicos { get; set; }
+
         public DbSet<CitaMedica> Citas_Medicas { get; set; }
         
     }

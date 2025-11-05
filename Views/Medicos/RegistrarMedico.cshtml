@@ -1,0 +1,46 @@
+@model TrabajoFinalGrupo6DBP.Models.Medico
+
+@{
+    ViewData["Title"] = "Registrar Médico";
+}
+
+<h2>Registrar Médico</h2>
+
+<form asp-action="RegistrarMedico" method="post" class="mt-3">
+    <div class="mb-3">
+        <label>DNI</label>
+        <input asp-for="DNI_Medico" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Nombre Completo</label>
+        <input asp-for="Nombre_Completo_Medico" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        
+        <label class="form-label">Especialidad</label>
+        <select class="form-select" asp-for="Especialidad" name="especialidad">
+            <option value="">Selecciona una especialidad</option>
+            <option value="Cardiología">Cardiología</option>
+            <option value="Pediatría">Pediatría</option>
+            <option value="Medicina General">Medicina General</option>
+            <option value="Laboratorio Clínico">Laboratorio Clínico</option>
+        </select>
+
+        
+    </div>
+
+    <div class="mb-3">
+        <label>Teléfono</label>
+        <input asp-for="Telefono_Medico" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Correo</label>
+        <input asp-for="Correo_Medico" class="form-control" type="email" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a asp-action="ListaMedicos" class="btn btn-secondary">Cancelar</a>
+</form>

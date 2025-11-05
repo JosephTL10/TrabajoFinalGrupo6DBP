@@ -1,0 +1,38 @@
+@model IEnumerable<TrabajoFinalGrupo6DBP.Models.HorarioMedico>
+
+@{
+    ViewData["Title"] = "Lista de Horarios de Médicos";
+}
+
+<h2 class="mb-4">Lista de Horarios</h2>
+
+<a asp-action="RegistrarHorarioMedico" class="btn btn-primary mb-3">Registrar nuevo horario</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Médico</th>
+            <th>Especialidad</th>
+            <th>Día</th>
+            <th>Hora Inicio</th>
+            <th>Hora Fin</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var h in Model)
+        {
+            <tr>
+                <td>@h.Medico?.Nombre_Completo_Medico</td>
+                <td>@h.Medico?.Especialidad</td>
+                <td>@h.DiaSemana</td>
+                <td>@h.Hora_Inicio</td>
+                <td>@h.Hora_Fin</td>
+                <td>
+                    <a asp-action="EditarHorarioMedico" asp-route-id="@h.Id_Horario" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="EliminarHorarioMedico" asp-route-id="@h.Id_Horario" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

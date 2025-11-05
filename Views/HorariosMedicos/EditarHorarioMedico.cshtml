@@ -1,0 +1,16 @@
+@model TrabajoFinalGrupo6DBP.Models.HorarioMedico
+
+@{
+    ViewData["Title"] = "Registrar Horario";
+}
+
+<h2>Editar Horario de Médico</h2>
+
+
+<h2>Editar Horario</h2>
+<form asp-action="EditarHorarioMedico" method="post" class="mt-3">
+    @Html.HiddenFor(m => m.Id_Horario)
+    ...
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    <a asp-action="ListaHorariosMedicos" class="btn btn-secondary">Cancelar</a>
+</form>

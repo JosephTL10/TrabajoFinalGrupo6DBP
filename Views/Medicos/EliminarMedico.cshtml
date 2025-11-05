@@ -1,0 +1,32 @@
+@model TrabajoFinalGrupo6DBP.Models.Medico
+
+@{
+    ViewData["Title"] = "Eliminar Médico";
+}
+
+<h2>Eliminar Médico</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<div class="alert alert-warning">
+    <p>¿Está seguro que desea eliminar este médico? Esta acción no se puede deshacer.</p>
+</div>
+
+<table class="table table-bordered">
+    <tr><th>ID</th><td>@Model.Id_Medico</td></tr>
+    <tr><th>Nombre</th><td>@Model.Nombre_Completo_Medico</td></tr>
+    <tr><th>DNI</th><td>@Model.DNI_Medico</td></tr>
+    <tr><th>Especialidad</th><td>@Model.Especialidad</td></tr>
+    <tr><th>Teléfono</th><td>@Model.Telefono_Medico</td></tr>
+    <tr><th>Correo</th><td>@Model.Correo_Medico</td></tr>
+    <tr><th>Estado</th><td>@(Model.Estado_Medico ? "Activo" : "Inactivo")</td></tr>
+</table>
+
+<form asp-action="EliminarMedicoConfirmado" method="post">
+    <input type="hidden" name="id" value="@Model.Id_Medico" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="ListaMedicos" class="btn btn-secondary">Cancelar</a>
+</form>

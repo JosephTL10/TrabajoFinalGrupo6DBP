@@ -6,11 +6,29 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TrabajoFinalGrupo6DBP.Migrations
 {
     /// <inheritdoc />
-    public partial class CrearBDTrabajoFinalGrupo6 : Migration
+    public partial class CrearBDTrabajoFinalGrupo6DBP : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Medicos",
+                columns: table => new
+                {
+                    Id_Medico = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DNI_Medico = table.Column<int>(type: "int", nullable: false),
+                    Nombre_Completo_Medico = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Especialidad = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Telefono_Medico = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Correo_Medico = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Estado_Medico = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Medicos", x => x.Id_Medico);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Pacientes",
                 columns: table => new
@@ -47,22 +65,50 @@ namespace TrabajoFinalGrupo6DBP.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Horarios_Medicos",
+                columns: table => new
+                {
+                    Id_Horario = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MedicoId = table.Column<int>(type: "int", nullable: false),
+                    DiaSemana = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Hora_Inicio = table.Column<TimeSpan>(type: "time", nullable: false),
+                    Hora_Fin = table.Column<TimeSpan>(type: "time", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Horarios_Medicos", x => x.Id_Horario);
+                    table.ForeignKey(
+                        name: "FK_Horarios_Medicos_Medicos_MedicoId",
+                        column: x => x.MedicoId,
+                        principalTable: "Medicos",
+                        principalColumn: "Id_Medico",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Citas_Medicas",
                 columns: table => new
                 {
                     Id_CitaMedica = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PacienteId = table.Column<int>(type: "int", nullable: false),
+                    MedicoId = table.Column<int>(type: "int", nullable: false),
                     Fecha_CitaMedica = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Hora_CitaMedica = table.Column<TimeOnly>(type: "time", nullable: false),
+                    Hora_CitaMedica = table.Column<TimeSpan>(type: "time", nullable: false),
                     Especialidad = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Medico = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Observaciones = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Estado_CitaMedica = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Citas_Medicas", x => x.Id_CitaMedica);
+                    table.ForeignKey(
+                        name: "FK_Citas_Medicas_Medicos_MedicoId",
+                        column: x => x.MedicoId,
+                        principalTable: "Medicos",
+                        principalColumn: "Id_Medico",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Citas_Medicas_Pacientes_PacienteId",
                         column: x => x.PacienteId,
@@ -72,9 +118,19 @@ namespace TrabajoFinalGrupo6DBP.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Citas_Medicas_MedicoId",
+                table: "Citas_Medicas",
+                column: "MedicoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Citas_Medicas_PacienteId",
                 table: "Citas_Medicas",
                 column: "PacienteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Horarios_Medicos_MedicoId",
+                table: "Horarios_Medicos",
+                column: "MedicoId");
         }
 
         /// <inheritdoc />
@@ -84,10 +140,16 @@ namespace TrabajoFinalGrupo6DBP.Migrations
                 name: "Citas_Medicas");
 
             migrationBuilder.DropTable(
+                name: "Horarios_Medicos");
+
+            migrationBuilder.DropTable(
                 name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "Pacientes");
+
+            migrationBuilder.DropTable(
+                name: "Medicos");
         }
     }
 }

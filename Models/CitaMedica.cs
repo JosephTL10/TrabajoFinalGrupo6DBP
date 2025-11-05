@@ -14,6 +14,14 @@ namespace TrabajoFinalGrupo6DBP.Models
 
         public Paciente? Paciente { get; set; } // Esto es para que podamos navegar desde CitaMedica hacia Paciente
 
+
+        [Required]
+        [ForeignKey("Medico")]
+        public int MedicoId { get; set; } // Llave foránea hacia Medico
+
+        public Medico? Medico { get; set; } // Navegación hacia Medico
+
+
         [Required]
         [DataType(DataType.Date)]
         public DateTime Fecha_CitaMedica { get; set; }
@@ -22,10 +30,11 @@ namespace TrabajoFinalGrupo6DBP.Models
         public TimeSpan Hora_CitaMedica { get; set; }
 
         [Required]
-        public string Especialidad { get; set; }
+        public string Especialidad { get; set; } // Ejemplo: Cardiología, Dermatología, etc.
 
     
-        public string? Medico { get; set; }
+
+
 
         public string? Observaciones { get; set; }
 

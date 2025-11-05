@@ -12,8 +12,8 @@ using TrabajoFinalGrupo6DBP;
 namespace TrabajoFinalGrupo6DBP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251015042953_CrearBDTrabajoFinalGrupo6")]
-    partial class CrearBDTrabajoFinalGrupo6
+    [Migration("20251105002311_CrearBDTrabajoFinalGrupo6DBP")]
+    partial class CrearBDTrabajoFinalGrupo6DBP
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,12 +44,11 @@ namespace TrabajoFinalGrupo6DBP.Migrations
                     b.Property<DateTime>("Fecha_CitaMedica")
                         .HasColumnType("datetime2");
 
-                    b.Property<TimeOnly>("Hora_CitaMedica")
+                    b.Property<TimeSpan>("Hora_CitaMedica")
                         .HasColumnType("time");
 
-                    b.Property<string>("Medico")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("MedicoId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Observaciones")
                         .HasColumnType("nvarchar(max)");
@@ -59,9 +58,74 @@ namespace TrabajoFinalGrupo6DBP.Migrations
 
                     b.HasKey("Id_CitaMedica");
 
+                    b.HasIndex("MedicoId");
+
                     b.HasIndex("PacienteId");
 
                     b.ToTable("Citas_Medicas");
+                });
+
+            modelBuilder.Entity("TrabajoFinalGrupo6DBP.Models.HorarioMedico", b =>
+                {
+                    b.Property<int>("Id_Horario")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_Horario"));
+
+                    b.Property<string>("DiaSemana")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<TimeSpan>("Hora_Fin")
+                        .HasColumnType("time");
+
+                    b.Property<TimeSpan>("Hora_Inicio")
+                        .HasColumnType("time");
+
+                    b.Property<int>("MedicoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id_Horario");
+
+                    b.HasIndex("MedicoId");
+
+                    b.ToTable("Horarios_Medicos");
+                });
+
+            modelBuilder.Entity("TrabajoFinalGrupo6DBP.Models.Medico", b =>
+                {
+                    b.Property<int>("Id_Medico")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_Medico"));
+
+                    b.Property<string>("Correo_Medico")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DNI_Medico")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Especialidad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Estado_Medico")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Nombre_Completo_Medico")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefono_Medico")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id_Medico");
+
+                    b.ToTable("Medicos");
                 });
 
             modelBuilder.Entity("TrabajoFinalGrupo6DBP.Models.Paciente", b =>
@@ -133,13 +197,39 @@ namespace TrabajoFinalGrupo6DBP.Migrations
 
             modelBuilder.Entity("TrabajoFinalGrupo6DBP.Models.CitaMedica", b =>
                 {
+                    b.HasOne("TrabajoFinalGrupo6DBP.Models.Medico", "Medico")
+                        .WithMany("CitasMedicas")
+                        .HasForeignKey("MedicoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("TrabajoFinalGrupo6DBP.Models.Paciente", "Paciente")
                         .WithMany("CitasMedicas")
                         .HasForeignKey("PacienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Medico");
+
                     b.Navigation("Paciente");
+                });
+
+            modelBuilder.Entity("TrabajoFinalGrupo6DBP.Models.HorarioMedico", b =>
+                {
+                    b.HasOne("TrabajoFinalGrupo6DBP.Models.Medico", "Medico")
+                        .WithMany("Horarios")
+                        .HasForeignKey("MedicoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Medico");
+                });
+
+            modelBuilder.Entity("TrabajoFinalGrupo6DBP.Models.Medico", b =>
+                {
+                    b.Navigation("CitasMedicas");
+
+                    b.Navigation("Horarios");
                 });
 
             modelBuilder.Entity("TrabajoFinalGrupo6DBP.Models.Paciente", b =>
