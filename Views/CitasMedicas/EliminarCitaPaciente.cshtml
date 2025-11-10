@@ -24,10 +24,12 @@ else
     <table class="table table-bordered">
         <tr><th>ID Cita</th><td>@Model.Id_CitaMedica</td></tr>
         <tr><th>ID Paciente</th><td>@Model.PacienteId</td></tr>
+        <tr><th>Nombre del Paciente</th><td>@Model.Paciente?.Nombre_Completo_Paciente</td></tr>
         <tr><th>Fecha de la Cita</th><td>@Model.Fecha_CitaMedica.ToShortDateString()</td></tr>
         <tr><th>Hora</th><td>@Model.Hora_CitaMedica</td></tr>
         <tr><th>Especialidad</th><td>@Model.Especialidad</td></tr>
-        <tr><th>Médico</th><td>@Model.Medico</td></tr>
+        <!-- ✅ Muestra el nombre del médico -->
+        <tr><th>Médico</th><td>@Model.Medico?.Nombre_Completo_Medico</td></tr>
         <tr><th>Observaciones</th><td>@Model.Observaciones</td></tr>
         <tr><th>Estado</th><td>@Model.Estado_CitaMedica</td></tr>
     </table>

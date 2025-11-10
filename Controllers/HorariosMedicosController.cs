@@ -18,12 +18,12 @@ namespace TrabajoFinalGrupo6DBP.Controllers
         public IActionResult ListaHorariosMedicos()
         {
             var horarios = dbContext.Horarios_Medicos
-                .Include(h => h.Medico)
-                .OrderBy(h => h.Medico.Nombre_Completo_Medico)
-                .ThenBy(h => h.DiaSemana)
-                .ToList();
+                .Include(h => h.Medico)  // Incluir datos del médico
+                .OrderBy(h => h.Medico.Nombre_Completo_Medico) // Ordenar por nombre del médico
+                .ThenBy(h => h.DiaSemana) // Luego por día de la semana
+                .ToList(); // Ejecutar la consulta y obtener la lista
 
-            return View(horarios);
+            return View(horarios); 
         }
 
         
@@ -79,7 +79,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             return RedirectToAction("ListaHorariosMedicos");
         }
 
-        
+
         [HttpGet]
         public IActionResult EliminarHorarioMedico(int id)
         {
@@ -93,19 +93,44 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             return View(horario);
         }
 
+
+
         [HttpPost]
-        public IActionResult EliminarHorarioMedicoConfirmado(HorarioMedico horario)
+        [ValidateAntiForgeryToken]
+        public IActionResult EliminarHorarioMedicoConfirmado(int id)
         {
-            var horarioDb = dbContext.Horarios_Medicos.Find(horario.Id_Horario);
-            if (horarioDb != null)
+            var horario = dbContext.Horarios_Medicos
+                .Include(h => h.Medico)
+                .FirstOrDefault(h => h.Id_Horario == id);
+
+            if (horario == null)
+                return NotFound();
+
+            // 🔍 Verificar si hay citas dentro de este horario
+            var citasAsociadas = dbContext.Citas_Medicas
+                .AsEnumerable() // ✅ necesario para usar ToString("dddd")
+                .Any(c =>
+                    {
+                        string diaCita = c.Fecha_CitaMedica.ToString("dddd", new System.Globalization.CultureInfo("es-ES"));
+                        return c.MedicoId == horario.MedicoId &&
+                            diaCita.Equals(horario.DiaSemana, StringComparison.OrdinalIgnoreCase) &&
+                            c.Hora_CitaMedica >= horario.Hora_Inicio &&
+                            c.Hora_CitaMedica <= horario.Hora_Fin;
+                    });
+
+            if (citasAsociadas)
             {
-                dbContext.Horarios_Medicos.Remove(horarioDb);
-                dbContext.SaveChanges();
+                TempData["Error"] = "No se puede eliminar este horario porque tiene citas médicas programadas.";
+                return RedirectToAction("ListaHorariosMedicos");
             }
 
-            return RedirectToAction("DetalleMedico", "Medicos", new { id = horarioDb.MedicoId });
+            dbContext.Horarios_Medicos.Remove(horario);
+            dbContext.SaveChanges();
 
+            TempData["Exito"] = "Horario eliminado correctamente.";
+            return RedirectToAction("ListaHorariosMedicos");
         }
+
 
 
 

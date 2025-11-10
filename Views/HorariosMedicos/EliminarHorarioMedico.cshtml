@@ -18,9 +18,11 @@
         <p><strong>Hora:</strong> @Model.Hora_Inicio - @Model.Hora_Fin</p>
     </div>
 
-    <form asp-action="EliminarHorarioMedicoConfirmado" method="post">
-        <input type="hidden" asp-for="Id_Horario" />
+    <form asp-action="EliminarHorarioMedicoConfirmado" asp-controller="HorariosMedicos" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="id" value="@Model.Id_Horario" />
         <button type="submit" class="btn btn-danger">Eliminar</button>
-        <a asp-action="ListaHorariosMedicos" class="btn btn-secondary">Cancelar</a>
+        <a asp-action="ListaHorariosMedicos" asp-controller="HorariosMedicos" class="btn btn-secondary">Cancelar</a>
     </form>
+
 </div>

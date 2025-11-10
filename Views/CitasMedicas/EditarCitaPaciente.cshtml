@@ -6,6 +6,15 @@
 
 @section Styles {
     <link rel="stylesheet" href="~/css/EditarCitaPaciente.css" />
+    <style>
+        #infoHorario {
+            background-color: #eaf4ff;
+            border-left: 4px solid #0066cc;
+            padding: 10px;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
 }
 
 <div class="container-editar">
@@ -17,62 +26,181 @@
         <div class="form-group">
             <label asp-for="PacienteId">ID del Paciente</label>
             <input asp-for="PacienteId" class="form-control" readonly />
-            <span asp-validation-for="PacienteId" class="text-danger"></span>
         </div>
 
-        <div class="form-group">
-            <label asp-for="Fecha_CitaMedica">Fecha de la Cita</label>
-            <input asp-for="Fecha_CitaMedica" type="date" class="form-control" />
-            <span asp-validation-for="Fecha_CitaMedica" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Hora_CitaMedica">Hora de la Cita</label>
-            <input asp-for="Hora_CitaMedica" type="time" class="form-control" />
-            <span asp-validation-for="Hora_CitaMedica" class="text-danger"></span>
-        </div>
 
         <div class="form-group">
             <label asp-for="Especialidad">Especialidad</label>
-            
-            <select asp-for="Especialidad" id="Especialidad" name="Especialidad" class="form-control" required>
+            <select asp-for="Especialidad" id="Especialidad" class="form-control" required>
+                <option value="">Seleccione una especialidad</option>
                 <option value="Cardiología">Cardiología</option>
                 <option value="Pediatría">Pediatría</option>
                 <option value="Medicina General">Medicina General</option>
                 <option value="Laboratorio Clínico">Laboratorio Clínico</option>
             </select>
-            <span asp-validation-for="Especialidad" class="text-danger"></span>
         </div>
 
+        <!-- ✅ Selector de médico dinámico -->
         <div class="form-group">
-            <label asp-for="Medico">Médico Asignado</label>
-            <input asp-for="Medico" class="form-control" placeholder="Nombre del médico" />
-            <span asp-validation-for="Medico" class="text-danger"></span>
+            <label asp-for="MedicoId">Médico</label>
+            <select asp-for="MedicoId" id="MedicoId" class="form-control" required disabled>
+                <option value="">Seleccione una especialidad primero</option>
+            </select>
         </div>
+
+        <!-- 🕐 Información de horarios -->
+        <div id="infoHorario"></div>
+
+
+        <div class="form-group">
+            <label asp-for="Fecha_CitaMedica">Fecha de la Cita</label>
+            <input asp-for="Fecha_CitaMedica" type="date" class="form-control" required />
+        </div>
+
+
+
+        <div class="form-group">
+            <label asp-for="Hora_CitaMedica">Hora de la Cita</label>
+            <select asp-for="Hora_CitaMedica" id="Hora_CitaMedica" class="form-control" required>
+                <option value="">Seleccione un horario</option>
+            </select>
+            <small id="infoBloques" class="text-muted"></small>
+        </div>
+
+
+
 
         <div class="form-group">
             <label asp-for="Observaciones">Observaciones</label>
-            <textarea asp-for="Observaciones" class="form-control" rows="3" placeholder="Notas adicionales o recomendaciones..."></textarea>
-            <span asp-validation-for="Observaciones" class="text-danger"></span>
+            <textarea asp-for="Observaciones" class="form-control" rows="3"></textarea>
         </div>
 
         <div class="form-group">
-            <label asp-for="Estado_CitaMedica">Estado de la Cita</label>
+            <label asp-for="Estado_CitaMedica">Estado</label>
             <select asp-for="Estado_CitaMedica" class="form-control">
                 <option value="En proceso">En proceso</option>
                 <option value="Confirmada">Confirmada</option>
                 <option value="Cancelada">Cancelada</option>
             </select>
-            <span asp-validation-for="Estado_CitaMedica" class="text-danger"></span>
         </div>
 
         <div class="botones">
-            <button type="submit" class="btn btn-guardar">Guardar Cambios</button>
-            <a asp-action="ListaCitasMedicas" class="btn btn-cancelar">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <a asp-action="ListaCitasMedicas" class="btn btn-secondary">Cancelar</a>
         </div>
     </form>
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+<script>
+    // 🔄 Cargar médicos por especialidad
+    document.getElementById("Especialidad").addEventListener("change", function() {
+        const especialidad = this.value;
+        const medicoSelect = document.getElementById("MedicoId");
+        const infoHorario = document.getElementById("infoHorario");
+
+        medicoSelect.innerHTML = "";
+        medicoSelect.disabled = true;
+        infoHorario.style.display = "none";
+
+        if (especialidad) {
+            fetch(`/api/medicos/porEspecialidad?especialidad=${encodeURIComponent(especialidad)}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        medicoSelect.disabled = false;
+                        medicoSelect.innerHTML = "<option value=''>Seleccione un médico</option>";
+                        data.forEach(m => {
+                            medicoSelect.innerHTML += `<option value="${m.id}">${m.nombre}</option>`;
+                        });
+                        // Si ya hay un médico asignado, lo seleccionamos
+                        const actual = "@Model.MedicoId";
+                        if (actual) medicoSelect.value = actual;
+                    } else {
+                        medicoSelect.innerHTML = "<option value=''>No hay médicos disponibles</option>";
+                    }
+                });
+        }
+    });
+
+    // 🕒 Mostrar horario del médico seleccionado
+    document.getElementById("MedicoId").addEventListener("change", function() {
+        const id = this.value;
+        const info = document.getElementById("infoHorario");
+
+        if (id) {
+            fetch(`/api/horarios/porMedico?id=${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        let html = "<strong>Horarios de atención:</strong><ul>";
+                        data.forEach(h => html += `<li>${h.dia}: ${h.horaInicio} - ${h.horaFin}</li>`);
+                        html += "</ul>";
+                        info.innerHTML = html;
+                        info.style.display = "block";
+                    } else {
+                        info.innerHTML = "<em>El médico no tiene horarios registrados.</em>";
+                        info.style.display = "block";
+                    }
+                });
+        } else {
+            info.style.display = "none";
+        }
+    });
+
+    // ✅ Si ya tiene especialidad, cargar los médicos automáticamente
+    window.addEventListener("load", function() {
+        const especialidad = document.getElementById("Especialidad").value;
+        if (especialidad) {
+            const evt = new Event("change");
+            document.getElementById("Especialidad").dispatchEvent(evt);
+        }
+    });
+
+
+
+
+    // 🔄 Cargar bloques disponibles según médico y fecha
+function cargarBloques() {
+    const medicoId = document.getElementById("MedicoId").value;
+    const fecha = document.getElementById("Fecha_CitaMedica").value;
+    const selectHora = document.getElementById("Hora_CitaMedica");
+    const info = document.getElementById("infoBloques");
+
+    if (!medicoId || !fecha) return;
+
+    fetch(`/api/bloques/disponibles?medicoId=${medicoId}&fecha=${fecha}`)
+        .then(res => res.json())
+        .then(data => {
+            selectHora.innerHTML = "";
+            if (data.length === 0) {
+                selectHora.innerHTML = "<option>No hay horario disponible ese día</option>";
+                info.textContent = "";
+                return;
+            }
+
+            let hayDisponibles = false;
+            data.forEach(b => {
+                const option = document.createElement("option");
+                option.value = b.hora;
+                option.textContent = b.hora + (b.ocupado ? " (Ocupado)" : "");
+                option.disabled = b.ocupado;
+                selectHora.appendChild(option);
+                if (!b.ocupado) hayDisponibles = true;
+            });
+
+            info.textContent = hayDisponibles
+                ? "Seleccione una hora disponible."
+                : "No hay horas disponibles para este médico en esa fecha.";
+        });
+}
+
+// 🗓 Escuchar cambios
+document.getElementById("Fecha_CitaMedica").addEventListener("change", cargarBloques);
+document.getElementById("MedicoId").addEventListener("change", cargarBloques);
+
+
+
+
+</script>
 }

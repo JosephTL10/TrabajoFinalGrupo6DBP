@@ -85,9 +85,13 @@ label {
         </div>
 
         <div class="form-group">
-            <label for="Hora_CitaMedica">Hora de la Cita *</label>
-            <input type="time" asp-for="Hora_CitaMedica" class="form-control" required />
+            <label asp-for="Hora_CitaMedica">Hora de la Cita</label>
+            <select asp-for="Hora_CitaMedica" id="Hora_CitaMedica" class="form-control" required>
+                <option value="">Seleccione un horario</option>
+            </select>
+            <small id="infoBloques" class="text-muted"></small>
         </div>
+
 
         <!-- OBSERVACIONES -->
         <div class="form-group">
@@ -177,5 +181,48 @@ label {
             infoDiv.style.display = "none";
         }
     });
+
+
+
+    // ⏰ Cargar bloques horarios disponibles según fecha y médico
+    // 🔄 Cargar bloques disponibles según médico y fecha
+    function cargarBloques() {
+        const medicoId = document.getElementById("MedicoId").value;
+        const fecha = document.getElementById("Fecha_CitaMedica").value;
+        const selectHora = document.getElementById("Hora_CitaMedica");
+        const info = document.getElementById("infoBloques");
+
+        if (!medicoId || !fecha) return;
+
+        fetch(`/api/bloques/disponibles?medicoId=${medicoId}&fecha=${fecha}`)
+            .then(res => res.json())
+            .then(data => {
+                selectHora.innerHTML = "";
+                if (data.length === 0) {
+                    selectHora.innerHTML = "<option>No hay horario disponible ese día</option>";
+                    info.textContent = "";
+                return;
+            }
+
+            let hayDisponibles = false;
+            data.forEach(b => {
+                const option = document.createElement("option");
+                option.value = b.hora;
+                option.textContent = b.hora + (b.ocupado ? " (Ocupado)" : "");
+                option.disabled = b.ocupado;
+                selectHora.appendChild(option);
+                if (!b.ocupado) hayDisponibles = true;
+            });
+
+            info.textContent = hayDisponibles
+                ? "Seleccione una hora disponible."
+                : "No hay horas disponibles para este médico en esa fecha.";
+        });
+    }
+
+    // 🗓 Escuchar cambios
+    document.getElementById("Fecha_CitaMedica").addEventListener("change", cargarBloques);
+    document.getElementById("MedicoId").addEventListener("change", cargarBloques);
+
 </script>
 }
