@@ -53,32 +53,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
 
 
         
-        [HttpGet]
-        public IActionResult EditarHorarioMedico(int id)
-        {
-            var horario = dbContext.Horarios_Medicos.Find(id);
-            if (horario == null)
-                return NotFound();
-
-            ViewBag.Medicos = new SelectList(dbContext.Medicos.ToList(), "Id_Medico", "Nombre_Completo_Medico", horario.MedicoId);
-            return View(horario);
-        }
-
         
-        [HttpPost]
-        public IActionResult EditarHorarioMedico(HorarioMedico horario)
-        {
-            if (!ModelState.IsValid)
-            {
-                ViewBag.Medicos = new SelectList(dbContext.Medicos.ToList(), "Id_Medico", "Nombre_Completo_Medico", horario.MedicoId);
-                return View(horario);
-            }
-
-            dbContext.Horarios_Medicos.Update(horario);
-            dbContext.SaveChanges();
-            return RedirectToAction("ListaHorariosMedicos");
-        }
-
 
         [HttpGet]
         public IActionResult EliminarHorarioMedico(int id)
