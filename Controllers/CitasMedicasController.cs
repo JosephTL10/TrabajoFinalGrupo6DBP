@@ -13,7 +13,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             this.dbContext = dbContext;
         }
 
-        // 📋 LISTA DE CITAS MÉDICAS
+        
         [HttpGet]
         public IActionResult ListaCitasMedicas(string? dni)
         {
@@ -31,7 +31,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
                 .ToList());
         }
 
-        // 🆕 REGISTRAR CITA - GET
+        
         [HttpGet]
         public IActionResult RegistrarCitaPaciente()
         {
@@ -39,60 +39,63 @@ namespace TrabajoFinalGrupo6DBP.Controllers
         }
 
         [HttpPost]
-public IActionResult RegistrarCitaPaciente(CitaMedica cita)
-{
-    if (!ModelState.IsValid)
-        return View(cita);
+        public IActionResult RegistrarCitaPaciente(CitaMedica cita)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(cita);
+            }
+                
 
-    var medico = dbContext.Medicos.Find(cita.MedicoId);
-    if (medico == null)
-    {
-        ModelState.AddModelError("MedicoId", "Debe seleccionar un médico válido.");
-        return View(cita);
-    }
+            var medico = dbContext.Medicos.Find(cita.MedicoId);
+            if (medico == null)
+            {
+                ModelState.AddModelError("MedicoId", "Debe seleccionar un médico válido.");
+                return View(cita);
+            }
 
-    // Día de la semana (en español)
-    string diaSemana = cita.Fecha_CitaMedica.ToString("dddd", new System.Globalization.CultureInfo("es-ES"));
-    diaSemana = char.ToUpper(diaSemana[0]) + diaSemana.Substring(1); // "Lunes", "Martes", etc.
+            // Día de la semana (en español)
+            string diaSemana = cita.Fecha_CitaMedica.ToString("dddd", new System.Globalization.CultureInfo("es-ES"));
+            diaSemana = char.ToUpper(diaSemana[0]) + diaSemana.Substring(1); // "Lunes", "Martes", etc.
 
-    // Buscar horario del médico para ese día
-    var horario = dbContext.Horarios_Medicos
-        .FirstOrDefault(h => h.MedicoId == cita.MedicoId && h.DiaSemana == diaSemana);
+            // Buscar horario del médico para ese día
+            var horario = dbContext.Horarios_Medicos
+                .FirstOrDefault(h => h.MedicoId == cita.MedicoId && h.DiaSemana == diaSemana);
 
-    if (horario == null)
-    {
-        ModelState.AddModelError("", $"El médico {medico.Nombre_Completo_Medico} no atiende los días {diaSemana}.");
-        return View(cita);
-    }
+            if (horario == null)
+            {
+                ModelState.AddModelError("", $"El médico {medico.Nombre_Completo_Medico} no atiende los días {diaSemana}.");
+                return View(cita);
+            }
 
-    // Validar que la hora elegida esté dentro del rango del horario
-    if (cita.Hora_CitaMedica < horario.Hora_Inicio || cita.Hora_CitaMedica >= horario.Hora_Fin)
-    {
-        ModelState.AddModelError("", $"El médico atiende los {diaSemana}s entre {horario.Hora_Inicio} y {horario.Hora_Fin}.");
-        return View(cita);
-    }
+            // Validar que la hora elegida esté dentro del rango del horario
+            if (cita.Hora_CitaMedica < horario.Hora_Inicio || cita.Hora_CitaMedica >= horario.Hora_Fin)
+            {
+                ModelState.AddModelError("", $"El médico atiende los {diaSemana}s entre {horario.Hora_Inicio} y {horario.Hora_Fin}.");
+                return View(cita);
+            }
 
-    // Validar si ya hay una cita en el mismo bloque de 30 minutos
-    bool ocupado = dbContext.Citas_Medicas.Any(c =>
-        c.MedicoId == cita.MedicoId &&
-        c.Fecha_CitaMedica.Date == cita.Fecha_CitaMedica.Date &&
-        c.Hora_CitaMedica == cita.Hora_CitaMedica);
+            // Validar si ya hay una cita en el mismo bloque de 30 minutos
+            bool ocupado = dbContext.Citas_Medicas.Any(c =>
+                c.MedicoId == cita.MedicoId &&
+                c.Fecha_CitaMedica.Date == cita.Fecha_CitaMedica.Date &&
+                c.Hora_CitaMedica == cita.Hora_CitaMedica);
 
-    if (ocupado)
-    {
-        ModelState.AddModelError("", $"El médico ya tiene una cita a las {cita.Hora_CitaMedica:hh\\:mm} en esa fecha.");
-        return View(cita);
-    }
+            if (ocupado)
+            {
+                ModelState.AddModelError("", $"El médico ya tiene una cita a las {cita.Hora_CitaMedica:hh\\:mm} en esa fecha.");
+                return View(cita);
+            }
 
-    // Guardar si todo está correcto
-    dbContext.Citas_Medicas.Add(cita);
-    dbContext.SaveChanges();
+            // Guardar si todo está correcto
+            dbContext.Citas_Medicas.Add(cita);
+            dbContext.SaveChanges();
 
-    return RedirectToAction("ListaCitasMedicas");
-}
+            return RedirectToAction("ListaCitasMedicas");
+        }
 
 
-        // ✏️ EDITAR CITA - GET
+        
         [HttpGet]
         public IActionResult EditarCitaPaciente(int id)
         {
@@ -108,7 +111,7 @@ public IActionResult RegistrarCitaPaciente(CitaMedica cita)
             return View(cita);
         }
 
-        // ✏️ EDITAR CITA - POST
+        
         [HttpPost]
         public IActionResult EditarCitaPaciente(CitaMedica cita)
         {
@@ -140,7 +143,7 @@ public IActionResult RegistrarCitaPaciente(CitaMedica cita)
             return RedirectToAction("ListaCitasMedicas");
         }
 
-        // ❌ ELIMINAR CITA - GET
+        
         [HttpGet]
         public IActionResult EliminarCitaPaciente(int id)
         {
@@ -155,7 +158,7 @@ public IActionResult RegistrarCitaPaciente(CitaMedica cita)
             return View(cita);
         }
 
-        // ❌ ELIMINAR CITA - POST
+        
         [HttpPost]
         public IActionResult EliminarCitaPacienteConfirm(int id)
         {

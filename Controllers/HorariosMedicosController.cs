@@ -47,7 +47,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             dbContext.Horarios_Medicos.Add(horario);
             dbContext.SaveChanges();
 
-            // ✅ Redirigir al detalle del médico
+            
             return RedirectToAction("DetalleMedico", "Medicos", new { id = horario.MedicoId });
         }
 
@@ -106,7 +106,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             if (horario == null)
                 return NotFound();
 
-            // 🔍 Verificar si hay citas dentro de este horario
+            // Verificar si hay citas dentro de este horario
             var citasAsociadas = dbContext.Citas_Medicas
                 .AsEnumerable() // ✅ necesario para usar ToString("dddd")
                 .Any(c =>
@@ -150,7 +150,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
                 .Include(c => c.Paciente)
                 .Include(c => c.Medico)
                 .Where(c => c.MedicoId == horario.MedicoId)
-                .AsEnumerable() // 👈 Esto hace que el resto del filtro se ejecute en memoria
+                .AsEnumerable() // Esto hace que el resto del filtro se ejecute en memoria
                 .Where(c =>
                     {
                         string diaCita = c.Fecha_CitaMedica.ToString("dddd", new System.Globalization.CultureInfo("es-ES"));

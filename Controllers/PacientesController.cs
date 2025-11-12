@@ -110,8 +110,6 @@ namespace TrabajoFinalGrupo6DBP.Controllers
         }
 
 
-
-
         
         [HttpGet]
         public IActionResult BuscarPorDNI(int dni)

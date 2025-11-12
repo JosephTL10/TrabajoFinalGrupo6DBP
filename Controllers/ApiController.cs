@@ -6,13 +6,13 @@ namespace TrabajoFinalGrupo6DBP.Controllers
 {
     [Route("api")]
     [ApiController]
-    public class ApiController : ControllerBase
+    public class ApiController : ControllerBase // se pode Route("api") porque es ApiController y sirve para hacer llamadas API que no retornan vistas, sino datos JSON.
     {
         private readonly ApplicationDbContext dbContext;
 
-        public ApiController(ApplicationDbContext dbcontext)
+        public ApiController(ApplicationDbContext dbContext)
         {
-            this.dbContext = dbcontext;
+            this.dbContext = dbContext;
         }
 
         // Médicos por especialidad
@@ -20,12 +20,18 @@ namespace TrabajoFinalGrupo6DBP.Controllers
         public IActionResult GetMedicosPorEspecialidad(string especialidad) // http://localhost:5177/api/medicos/porEspecialidad?especialidad=Cardiología  ejemplo
         {
             var medicos = dbContext.Medicos
-                .Where(m => m.Especialidad == especialidad && m.Estado_Medico)
-                .Select(m => new { id = m.Id_Medico, nombre = m.Nombre_Completo_Medico })
+                .Where(m => m.Especialidad == especialidad && m.Estado_Medico) 
+                .Select(m => new
+                {
+                    id = m.Id_Medico,
+                    nombre = m.Nombre_Completo_Medico
+                })
                 .ToList();
 
             return Ok(medicos);
         }
+
+
 
         // Horarios por médico
         [HttpGet("horarios/porMedico")]
@@ -43,10 +49,6 @@ namespace TrabajoFinalGrupo6DBP.Controllers
 
             return Ok(horarios);
         }
-
-
-
-
 
 
 
