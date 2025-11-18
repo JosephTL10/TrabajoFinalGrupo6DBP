@@ -12,7 +12,7 @@ using TrabajoFinalGrupo6DBP;
 namespace TrabajoFinalGrupo6DBP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251105002311_CrearBDTrabajoFinalGrupo6DBP")]
+    [Migration("20251117191150_CrearBDTrabajoFinalGrupo6DBP")]
     partial class CrearBDTrabajoFinalGrupo6DBP
     {
         /// <inheritdoc />

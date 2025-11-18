@@ -21,7 +21,6 @@ namespace TrabajoFinalGrupo6DBP.Models
 
         public Medico? Medico { get; set; } // Navegación hacia Medico
 
-
         [Required]
         [DataType(DataType.Date)]
         public DateTime Fecha_CitaMedica { get; set; }
@@ -30,9 +29,7 @@ namespace TrabajoFinalGrupo6DBP.Models
         public TimeSpan Hora_CitaMedica { get; set; }
 
         [Required]
-        public string Especialidad { get; set; } // Ejemplo: Cardiología, Dermatología, etc.
-
-    
+        public string Especialidad { get; set; } 
 
 
 
