@@ -107,7 +107,7 @@ label {
 
 @section Scripts {
 <script>
-    // 🔍 Buscar paciente por DNI
+    // Buscar paciente por DNI
     document.getElementById("DNI_Paciente").addEventListener("blur", function() {
         const dni = this.value.trim();
         if (dni.length === 8) {
@@ -127,7 +127,7 @@ label {
         }
     });
 
-    // 🔄 Cargar médicos por especialidad
+    // Cargar médicos por especialidad
     document.getElementById("Especialidad").addEventListener("change", function() {
         const especialidad = this.value;
         const medicoSelect = document.getElementById("MedicoId");
@@ -153,7 +153,7 @@ label {
         }
     });
 
-    // 🕐 Mostrar horarios del médico seleccionado
+    // Mostrar horarios del médico seleccionado
     document.getElementById("MedicoId").addEventListener("change", function() {
         const medicoId = this.value;
         const infoDiv = document.getElementById("infoHorario");
@@ -182,8 +182,8 @@ label {
 
 
 
-    // ⏰ Cargar bloques horarios disponibles según fecha y médico
-    // 🔄 Cargar bloques disponibles según médico y fecha
+    // Cargar bloques horarios disponibles según fecha y médico
+    // Cargar bloques disponibles según médico y fecha
     function cargarBloques() {
         const medicoId = document.getElementById("MedicoId").value;
         const fecha = document.getElementById("Fecha_CitaMedica").value;
@@ -218,7 +218,7 @@ label {
         });
     }
 
-    // 🗓 Escuchar cambios
+    // Escuchar cambios
     document.getElementById("Fecha_CitaMedica").addEventListener("change", cargarBloques);
     document.getElementById("MedicoId").addEventListener("change", cargarBloques);
 

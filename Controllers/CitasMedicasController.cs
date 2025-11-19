@@ -49,6 +49,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
         {
             if (!ModelState.IsValid)
             {
+
                 return View(cita);
             }
                 

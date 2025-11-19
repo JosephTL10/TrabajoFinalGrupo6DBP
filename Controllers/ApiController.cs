@@ -17,7 +17,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
 
         // Médicos por especialidad
         [HttpGet("medicos/porEspecialidad")]
-        public IActionResult GetMedicosPorEspecialidad(int especialidadId) // http://localhost:5177/api/medicos/porEspecialidad?especialidadid=Cardiología  ejemplo
+        public IActionResult GetMedicosPorEspecialidad(int especialidadId) // http://localhost:5177/api/medicos/porEspecialidad?especialidadid=1  ejemplo
         {
             var medicos = dbContext.Medicos
                 .Where(m => m.Id_Especialidad == especialidadId && m.Estado_Medico) 

@@ -40,9 +40,9 @@ namespace TrabajoFinalGrupo6DBP.Controllers
                 .Where(e => e.Estado_Especialidad)
                 .ToList();
 
-            // ======================================
-            // ==========   PACIENTES   =============
-            // ======================================
+            
+            // Reporte de pacientes
+            
             if (tipoReporte == "pacientes")
             {
                 var pacientes = dbContext.Pacientes.AsQueryable();
@@ -56,9 +56,8 @@ namespace TrabajoFinalGrupo6DBP.Controllers
                 return View();
             }
 
-            // ======================================
-            // ==========     CITAS     =============
-            // ======================================
+            // Reporte de citas médicas
+
             else if (tipoReporte == "citas")
             {
                 var citas = dbContext.Citas_Medicas
@@ -85,9 +84,8 @@ namespace TrabajoFinalGrupo6DBP.Controllers
                 return View();
             }
 
-            // ======================================
-            // ========   ESTADISTICAS   ============
-            // ======================================
+            // Estadisticas de citas médicas
+            
             else if (tipoReporte == "estadisticas")
             {
                 var citas = dbContext.Citas_Medicas

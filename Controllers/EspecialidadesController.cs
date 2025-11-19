@@ -13,7 +13,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             this.dbContext = dbContext;
         }
 
-        // LISTA
+        
         public IActionResult ListaEspecialidades()
         {
             var especialidades = dbContext.Especialidades
@@ -26,21 +26,21 @@ namespace TrabajoFinalGrupo6DBP.Controllers
         
 
 
-        // REGISTRAR GET
+        
         [HttpGet]
         public IActionResult RegistrarEspecialidad()
         {
             return View();
         }
 
-        // REGISTRAR POST
+        
         [HttpPost]
         public IActionResult RegistrarEspecialidad(Especialidad especialidad)
         {
             if (!ModelState.IsValid)
                 return View(especialidad);
 
-            // VALIDAR DUPLICADO POR NOMBRE
+            // Vvalidar que no se repita el nombre
             bool existe = dbContext.Especialidades
                 .Any(e => e.Nombre_Especialidad.ToLower() == especialidad.Nombre_Especialidad.ToLower());
 
@@ -58,7 +58,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
 
 
 
-        // EDITAR SOLO DESCRIPCIÓN
+        
         [HttpGet]
         public IActionResult EditarEspecialidad(int id)
         {
@@ -82,7 +82,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             return RedirectToAction("ListaEspecialidades");
         }
 
-        // DESACTIVAR / ACTIVAR
+        
         [HttpPost]
         public IActionResult CambiarEstado(int id)
         {
@@ -98,7 +98,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
 
 
 
-        // ELIMINAR
+        
         [HttpGet]
         public IActionResult EliminarEspecialidad(int id)
         {
