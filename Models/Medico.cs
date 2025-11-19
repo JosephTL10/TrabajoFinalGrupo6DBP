@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TrabajoFinalGrupo6DBP.Models
 {
@@ -14,7 +15,10 @@ namespace TrabajoFinalGrupo6DBP.Models
         public string Nombre_Completo_Medico { get; set; }
 
         [Required]
-        public string Especialidad { get; set; } // Ejemplo: Cardiología, Dermatología, etc.
+        [ForeignKey("Especialidad")]
+        public int Id_Especialidad { get; set; } // Foreign key to Especialidad
+        public Especialidad? Especialidad { get; set; } // Navigation property
+
 
         [Required]
         public string Telefono_Medico { get; set; }
@@ -25,10 +29,10 @@ namespace TrabajoFinalGrupo6DBP.Models
 
         public bool Estado_Medico { get; set; } = true;
 
-        public ICollection<CitaMedica>? CitasMedicas { get; set; }
+        public ICollection<CitaMedica>? CitasMedicas { get; set; } // Un médico puede tener muchas citas médicas
 
 
-        public ICollection<HorarioMedico>? Horarios { get; set; }
+        public ICollection<HorarioMedico>? Horarios { get; set; } // Un médico puede tener muchos horarios
 
     }
 }

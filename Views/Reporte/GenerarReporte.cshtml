@@ -4,6 +4,7 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,14 +14,43 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
 
     <style>
-        body { background: #eef3f7; font-family: 'Segoe UI', sans-serif; }
-        .hero { background: linear-gradient(90deg, #007bff, #004a99); color: white; padding: 40px 0; text-align: center; border-radius: 0 0 25px 25px; }
-        .card { border-radius: 15px; border: none; box-shadow: 0 3px 15px rgba(0,0,0,0.1); }
-        .btn-custom { background-color: #007bff; color: white; border-radius: 10px; transition: 0.3s; }
-        .btn-custom:hover { background-color: #0056b3; transform: scale(1.05); }
-        #spinner { display: none; }
+        body {
+            background: #eef3f7;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .hero {
+            background: linear-gradient(90deg, #007bff, #004a99);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 0 0 25px 25px;
+        }
+
+        .card {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        #spinner {
+            display: none;
+        }
     </style>
 </head>
+
 <body>
     <div class="hero">
         <h1><i class="bi bi-clipboard-data"></i> Generar Reporte</h1>
@@ -66,7 +96,8 @@
             <div id="resultado" class="mt-3">
                 @if (ViewBag.TipoReporte == "pacientes")
                 {
-                    if (ViewBag.Resultados != null && ((List<TrabajoFinalGrupo6DBP.Models.Paciente>)ViewBag.Resultados).Count > 0)
+                    if (ViewBag.Resultados != null &&
+                    ((List<TrabajoFinalGrupo6DBP.Models.Paciente>)ViewBag.Resultados).Count > 0)
                     {
                         <table class="table table-bordered table-striped">
                             <thead class="table-primary">
@@ -75,8 +106,9 @@
                                     <th>Nombre</th>
                                     <th>DNI</th>
                                     <th>Teléfono</th>
+
                                     <th>Dirección</th>
-                                    
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,7 +132,8 @@
                 }
                 else if (ViewBag.TipoReporte == "citas")
                 {
-                    if (ViewBag.Resultados != null && ((List<TrabajoFinalGrupo6DBP.Models.CitaMedica>)ViewBag.Resultados).Count > 0)
+                    if (ViewBag.Resultados != null &&
+                    ((List<TrabajoFinalGrupo6DBP.Models.CitaMedica>)ViewBag.Resultados).Count > 0)
                     {
                         <table class="table table-bordered table-striped">
                             <thead class="table-primary">
@@ -108,6 +141,7 @@
                                     <th>ID</th>
                                     <th>Paciente</th>
                                     <th>Especialidad</th>
+                                    <th>Médico</th>
                                     <th>Fecha</th>
                                     <th>Hora</th>
                                     <th>Estado</th>
@@ -119,7 +153,11 @@
                                     <tr>
                                         <td>@c.Id_CitaMedica</td>
                                         <td>@c.Paciente?.Nombre_Completo_Paciente</td>
-                                        <td>@c.Especialidad</td>
+
+                                        <td>@c.Medico?.Especialidad?.Nombre_Especialidad</td>
+
+                                        <td>@c.Medico?.Nombre_Completo_Medico</td>
+
                                         <td>@c.Fecha_CitaMedica.ToShortDateString()</td>
                                         <td>@c.Hora_CitaMedica</td>
                                         <td>@c.Estado_CitaMedica</td>
@@ -162,10 +200,22 @@
                 }
                 else
                 {
-                    <p class="text-muted text-center"><i class="bi bi-info-circle"></i> Seleccione un tipo de reporte y presione <strong>Generar</strong>.</p>
+                    <p class="text-muted text-center"><i class="bi bi-info-circle"></i> Seleccione un tipo de reporte y
+                        presione <strong>Generar</strong>.</p>
                 }
             </div>
+
+
+
+            <!-- Div para mostrar graficos de estadisticas -->
+            <div class="mt-4">
+                <canvas id="graficoEstadisticas" style="max-height: 350px;"></canvas>
+            </div>
+
         </div>
+
+
+
 
         @if (ViewBag.Mensaje != null)
         {
@@ -174,6 +224,8 @@
             </div>
         }
     </div>
+
+
 
     <script>
         const tipoReporte = document.getElementById("tipoReporte");
@@ -213,10 +265,19 @@
                         <label class="form-label">Especialidad</label>
                         <select class="form-select" name="especialidad">
                             <option value="">Selecciona una especialidad</option>
-                            <option value="Cardiología">Cardiología</option>
-                            <option value="Pediatría">Pediatría</option>
-                            <option value="Medicina General">Medicina General</option>
-                            <option value="Laboratorio Clínico">Laboratorio Clínico</option>
+                            @if (ViewBag.Especialidades != null)
+                            {
+                                    @foreach (var especialidad in ViewBag.Especialidades)
+                                    {
+                                            <option value="@especialidad.Nombre_Especialidad">@especialidad.Nombre_Especialidad</option>
+                                    }
+
+                            }
+                            else
+                            {
+                                    <option>No hay especialidades registradas</option>
+                            }
+
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -258,5 +319,57 @@
             spinner.style.display = "block";
         });
     </script>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const tipo = "@ViewBag.TipoReporte";
+
+            if (tipo === "estadisticas") {
+
+                const labels = @Html.Raw(Json.Serialize(ViewBag.Labels));
+                const data = @Html.Raw(Json.Serialize(ViewBag.Data));
+
+                const ctx = document.getElementById('graficoEstadisticas');
+
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Total',
+                            data: data,
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(75, 192, 192, 0.7)',
+                                'rgba(153, 102, 255, 0.7)',
+                                'rgba(255, 159, 64, 0.7)'
+                            ],
+                            borderColor: 'rgba(0,0,0,0.2)',
+                            borderWidth: 1,
+                            borderRadius: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+
 </body>
+
 </html>

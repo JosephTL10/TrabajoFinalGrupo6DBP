@@ -17,10 +17,10 @@ namespace TrabajoFinalGrupo6DBP.Controllers
 
         // Médicos por especialidad
         [HttpGet("medicos/porEspecialidad")]
-        public IActionResult GetMedicosPorEspecialidad(string especialidad) // http://localhost:5177/api/medicos/porEspecialidad?especialidad=Cardiología  ejemplo
+        public IActionResult GetMedicosPorEspecialidad(int especialidadId) // http://localhost:5177/api/medicos/porEspecialidad?especialidadid=Cardiología  ejemplo
         {
             var medicos = dbContext.Medicos
-                .Where(m => m.Especialidad == especialidad && m.Estado_Medico) 
+                .Where(m => m.Id_Especialidad == especialidadId && m.Estado_Medico) 
                 .Select(m => new
                 {
                     id = m.Id_Medico,

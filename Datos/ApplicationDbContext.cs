@@ -19,6 +19,9 @@ namespace TrabajoFinalGrupo6DBP
         public DbSet<HorarioMedico> Horarios_Medicos { get; set; }
 
         public DbSet<CitaMedica> Citas_Medicas { get; set; }
+
+
+        public DbSet<Especialidad> Especialidades { get; set; }
         
     }
 }

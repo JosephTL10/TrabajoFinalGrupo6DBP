@@ -1,0 +1,27 @@
+@model TrabajoFinalGrupo6DBP.Models.Especialidad
+
+@{
+    ViewData["Title"] = "Registrar Especialidad";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/RegistrarMedico.css" />
+}
+
+
+<div class="container">
+    <h1>Registrar Especialidad</h1>
+
+    <form asp-action="RegistrarEspecialidad" method="post">
+        <label>Nombre *</label>
+        <input asp-for="Nombre_Especialidad" />
+        </select>
+
+        <label>Descripción *</label>
+        <input asp-for="Descripcion" />
+
+        
+
+        <button type="submit">Guardar</button>
+        <a asp-action="ListaEspecialidades" class="btn-cancelar">Cancelar</a>
+    </form>
+</div>

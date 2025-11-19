@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TrabajoFinalGrupo6DBP.Models;
 
 namespace TrabajoFinalGrupo6DBP.Controllers
@@ -60,6 +61,8 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             return View(paciente);
         }
 
+
+
         [HttpGet]
         public IActionResult EditarRegistroPaciente(int id)
         {
@@ -107,6 +110,26 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             }
 
             return NotFound();
+        }
+
+
+
+
+        [HttpGet]
+        public IActionResult DetallePaciente(int id)
+        {
+            var paciente = dbContext.Pacientes
+            .Include(p => p.CitasMedicas)
+            .ThenInclude(c => c.Medico)
+            .ThenInclude(m => m.Especialidad)
+            .FirstOrDefault(p => p.Id_Paciente == id);
+            
+            if (paciente == null)
+            {
+                return NotFound();
+            }
+
+            return View(paciente);
         }
 
 

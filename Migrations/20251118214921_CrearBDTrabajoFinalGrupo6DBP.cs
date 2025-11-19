@@ -12,21 +12,18 @@ namespace TrabajoFinalGrupo6DBP.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Medicos",
+                name: "Especialidades",
                 columns: table => new
                 {
-                    Id_Medico = table.Column<int>(type: "int", nullable: false)
+                    Id_Especialidad = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DNI_Medico = table.Column<int>(type: "int", nullable: false),
-                    Nombre_Completo_Medico = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Especialidad = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Telefono_Medico = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Correo_Medico = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Estado_Medico = table.Column<bool>(type: "bit", nullable: false)
+                    Nombre_Especialidad = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Estado_Especialidad = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Medicos", x => x.Id_Medico);
+                    table.PrimaryKey("PK_Especialidades", x => x.Id_Especialidad);
                 });
 
             migrationBuilder.CreateTable(
@@ -39,6 +36,8 @@ namespace TrabajoFinalGrupo6DBP.Migrations
                     Nombre_Completo_Paciente = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Fecha_Nacimiento_Paciente = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Telefono_Paciente = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Correo_Paciente = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Contrasenia_Paciente = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Direccion_Paciente = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -65,6 +64,60 @@ namespace TrabajoFinalGrupo6DBP.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Medicos",
+                columns: table => new
+                {
+                    Id_Medico = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DNI_Medico = table.Column<int>(type: "int", nullable: false),
+                    Nombre_Completo_Medico = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Id_Especialidad = table.Column<int>(type: "int", nullable: false),
+                    Telefono_Medico = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Correo_Medico = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Estado_Medico = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Medicos", x => x.Id_Medico);
+                    table.ForeignKey(
+                        name: "FK_Medicos_Especialidades_Id_Especialidad",
+                        column: x => x.Id_Especialidad,
+                        principalTable: "Especialidades",
+                        principalColumn: "Id_Especialidad",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Citas_Medicas",
+                columns: table => new
+                {
+                    Id_CitaMedica = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PacienteId = table.Column<int>(type: "int", nullable: false),
+                    MedicoId = table.Column<int>(type: "int", nullable: false),
+                    Fecha_CitaMedica = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Hora_CitaMedica = table.Column<TimeSpan>(type: "time", nullable: false),
+                    Observaciones = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado_CitaMedica = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Citas_Medicas", x => x.Id_CitaMedica);
+                    table.ForeignKey(
+                        name: "FK_Citas_Medicas_Medicos_MedicoId",
+                        column: x => x.MedicoId,
+                        principalTable: "Medicos",
+                        principalColumn: "Id_Medico",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Citas_Medicas_Pacientes_PacienteId",
+                        column: x => x.PacienteId,
+                        principalTable: "Pacientes",
+                        principalColumn: "Id_Paciente",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Horarios_Medicos",
                 columns: table => new
                 {
@@ -86,37 +139,6 @@ namespace TrabajoFinalGrupo6DBP.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Citas_Medicas",
-                columns: table => new
-                {
-                    Id_CitaMedica = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PacienteId = table.Column<int>(type: "int", nullable: false),
-                    MedicoId = table.Column<int>(type: "int", nullable: false),
-                    Fecha_CitaMedica = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Hora_CitaMedica = table.Column<TimeSpan>(type: "time", nullable: false),
-                    Especialidad = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Observaciones = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Estado_CitaMedica = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Citas_Medicas", x => x.Id_CitaMedica);
-                    table.ForeignKey(
-                        name: "FK_Citas_Medicas_Medicos_MedicoId",
-                        column: x => x.MedicoId,
-                        principalTable: "Medicos",
-                        principalColumn: "Id_Medico",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Citas_Medicas_Pacientes_PacienteId",
-                        column: x => x.PacienteId,
-                        principalTable: "Pacientes",
-                        principalColumn: "Id_Paciente",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Citas_Medicas_MedicoId",
                 table: "Citas_Medicas",
@@ -131,6 +153,11 @@ namespace TrabajoFinalGrupo6DBP.Migrations
                 name: "IX_Horarios_Medicos_MedicoId",
                 table: "Horarios_Medicos",
                 column: "MedicoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Medicos_Id_Especialidad",
+                table: "Medicos",
+                column: "Id_Especialidad");
         }
 
         /// <inheritdoc />
@@ -150,6 +177,9 @@ namespace TrabajoFinalGrupo6DBP.Migrations
 
             migrationBuilder.DropTable(
                 name: "Medicos");
+
+            migrationBuilder.DropTable(
+                name: "Especialidades");
         }
     }
 }

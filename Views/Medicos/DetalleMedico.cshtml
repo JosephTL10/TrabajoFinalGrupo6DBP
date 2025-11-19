@@ -15,7 +15,7 @@
     <div class="card">
         <div class="card-body">
             <h4>@Model.Nombre_Completo_Medico</h4>
-            <p><strong>Especialidad:</strong> @Model.Especialidad</p>
+            <p><strong>Especialidad:</strong> @Model.Especialidad?.Nombre_Especialidad</p>
             <p><strong>DNI:</strong> @Model.DNI_Medico</p>
             <p><strong>Teléfono:</strong> @Model.Telefono_Medico</p>
             <p><strong>Correo:</strong> @Model.Correo_Medico</p>

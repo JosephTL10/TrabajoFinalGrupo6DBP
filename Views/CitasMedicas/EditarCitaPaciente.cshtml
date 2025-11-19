@@ -30,14 +30,15 @@
 
 
         <div class="form-group">
-            <label asp-for="Especialidad">Especialidad</label>
-            <select asp-for="Especialidad" id="Especialidad" class="form-control" required>
-                <option value="">Seleccione una especialidad</option>
-                <option value="Cardiología">Cardiología</option>
-                <option value="Pediatría">Pediatría</option>
-                <option value="Medicina General">Medicina General</option>
-                <option value="Laboratorio Clínico">Laboratorio Clínico</option>
+            
+            <label for="Especialidad">Especialidad *</label>
+
+            <select id="Especialidad" name="Id_Especialidad"
+                class="form-control" required
+                asp-items="ViewBag.Especialidades">
             </select>
+
+        
         </div>
 
         <!-- ✅ Selector de médico dinámico -->
@@ -104,7 +105,7 @@
         infoHorario.style.display = "none";
 
         if (especialidad) {
-            fetch(`/api/medicos/porEspecialidad?especialidad=${encodeURIComponent(especialidad)}`)
+            fetch(`/api/medicos/porEspecialidad?especialidadId=${encodeURIComponent(especialidad)}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data.length > 0) {

@@ -248,3 +248,15 @@ D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo ba
 D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\obj\Debug\net9.0\compressed\3ho3ftb0vs-22wymaya47.gz
 D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\obj\Debug\net9.0\compressed\7wyj61atta-g07qzuy2uy.gz
 D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\obj\Debug\net9.0\compressed\tpmsnuqdpy-k9wa1x7zun.gz
+D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
+D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\bin\Debug\net9.0\ClosedXML.dll
+D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\bin\Debug\net9.0\ClosedXML.Parser.dll
+D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\bin\Debug\net9.0\DocumentFormat.OpenXml.dll
+D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\bin\Debug\net9.0\DocumentFormat.OpenXml.Framework.dll
+D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\bin\Debug\net9.0\ExcelNumberFormat.dll
+D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\bin\Debug\net9.0\HtmlAgilityPack.dll
+D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\bin\Debug\net9.0\itextsharp.dll
+D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\bin\Debug\net9.0\itextsharp.xmlworker.dll
+D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\bin\Debug\net9.0\RBush.dll
+D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\bin\Debug\net9.0\SixLabors.Fonts.dll
+D:\Clases de cada semana de cada curso de la universidad\6to ciclo\Desarrollo basado en plataformas\Actividades\TrabajoFinal\TrabajoFinalGrupo6DBP\bin\Debug\net9.0\System.IO.Packaging.dll

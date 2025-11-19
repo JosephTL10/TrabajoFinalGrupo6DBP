@@ -23,7 +23,7 @@
     <tr><th>ID</th><td>@Model.Id_Medico</td></tr>
     <tr><th>Nombre</th><td>@Model.Nombre_Completo_Medico</td></tr>
     <tr><th>DNI</th><td>@Model.DNI_Medico</td></tr>
-    <tr><th>Especialidad</th><td>@Model.Especialidad</td></tr>
+    <tr><th>Especialidad</th><td>@Model.Especialidad?.Nombre_Especialidad</td></tr>
     <tr><th>Teléfono</th><td>@Model.Telefono_Medico</td></tr>
     <tr><th>Correo</th><td>@Model.Correo_Medico</td></tr>
     <tr><th>Estado</th><td>@(Model.Estado_Medico ? "Activo" : "Inactivo")</td></tr>

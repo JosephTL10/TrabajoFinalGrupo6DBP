@@ -18,49 +18,52 @@
     </p>
 
     <form asp-action="ListaCitasMedicas" method="get" class="d-flex mb-3" role="search">
-        <input name="dni" class="form-control me-2" type="search" placeholder="Buscar por DNI del Paciente" aria-label="Search" value="@Context.Request.Query["dni"]" />
+        <input name="dni" class="form-control me-2" type="search" placeholder="Buscar por DNI del Paciente"
+            aria-label="Search" value="@Context.Request.Query["dni"]" />
         <button class="btn btn-outline-success" type="submit">Buscar</button>
     </form>
 
     <div class="tabla-container">
-    <table class="tabla-pacientes">
-        <thead>
-            <tr>
-                <th>Id Cita</th>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>DNI del Paciente</th>
-                <th>Nombre del Paciente</th>
-                <th>Especialidad</th>
-                <th>Médico</th>
-                <th>Observaciones</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var cita in Model)
-            {
+        <table class="tabla-pacientes">
+            <thead>
                 <tr>
-                    <td>@cita.Id_CitaMedica</td>
-                    <td>@cita.Fecha_CitaMedica.ToShortDateString()</td>
-                    <td>@cita.Hora_CitaMedica</td>
-                    <td>@cita.Paciente?.DNI_Paciente</td>
-                    <td>@cita.Paciente?.Nombre_Completo_Paciente</td>
-
-                    <td>@cita.Especialidad</td>
-
-                    <td>@cita.Medico?.Nombre_Completo_Medico</td>
-                    <td>@cita.Observaciones</td>
-                    <td>@cita.Estado_CitaMedica</td>
-                    <td>
-                        <a asp-action="EditarCitaPaciente" asp-route-id="@cita.Id_CitaMedica" class="btn btn-warning">Editar</a>
-                        <a asp-action="EliminarCitaPaciente" asp-route-id="@cita.Id_CitaMedica" class="btn btn-danger">Eliminar</a>
-                    </td>
+                    <th>Id Cita</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>DNI del Paciente</th>
+                    <th>Nombre del Paciente</th>
+                    <th>Especialidad</th>
+                    <th>Médico</th>
+                    <th>Observaciones</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                @foreach (var cita in Model)
+                {
+                    <tr>
+                        <td>@cita.Id_CitaMedica</td>
+                        <td>@cita.Fecha_CitaMedica.ToShortDateString()</td>
+                        <td>@cita.Hora_CitaMedica</td>
+                        <td>@cita.Paciente?.DNI_Paciente</td>
+                        <td>@cita.Paciente?.Nombre_Completo_Paciente</td>
+
+                        <td>@cita.Medico?.Especialidad?.Nombre_Especialidad</td>
+
+                        <td>@cita.Medico?.Nombre_Completo_Medico</td>
+                        <td>@cita.Observaciones</td>
+                        <td>@cita.Estado_CitaMedica</td>
+                        <td>
+                            <a asp-action="EditarCitaPaciente" asp-route-id="@cita.Id_CitaMedica"
+                                class="btn btn-warning">Editar</a>
+                            <a asp-action="EliminarCitaPaciente" asp-route-id="@cita.Id_CitaMedica"
+                                class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
 </div>

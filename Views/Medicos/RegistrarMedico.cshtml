@@ -12,25 +12,20 @@
     <h1>Registrar Médico</h1>
 
     <form asp-action="RegistrarMedico" method="post">
-        <label>DNI</label>
+        <label>DNI *</label>
         <input asp-for="DNI_Medico" />
 
-        <label>Nombre Completo</label>
+        <label>Nombre Completo  *</label>
         <input asp-for="Nombre_Completo_Medico" />
 
-        <label>Especialidad</label>
-        <select asp-for="Especialidad" name="especialidad">
-            <option value="">Selecciona una especialidad</option>
-            <option value="Cardiología">Cardiología</option>
-            <option value="Pediatría">Pediatría</option>
-            <option value="Medicina General">Medicina General</option>
-            <option value="Laboratorio Clínico">Laboratorio Clínico</option>
+        <label>Especialidad *</label>
+        <select asp-for="Id_Especialidad" asp-items="ViewBag.Especialidades" class="form-control">
         </select>
 
-        <label>Teléfono</label>
+        <label>Teléfono *</label>
         <input asp-for="Telefono_Medico" />
 
-        <label>Correo</label>
+        <label>Correo *</label>
         <input asp-for="Correo_Medico" type="email" />
 
         <button type="submit">Guardar</button>

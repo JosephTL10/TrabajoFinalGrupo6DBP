@@ -28,10 +28,6 @@ namespace TrabajoFinalGrupo6DBP.Models
         [Required]
         public TimeSpan Hora_CitaMedica { get; set; }
 
-        [Required]
-        public string Especialidad { get; set; } 
-
-
 
         public string? Observaciones { get; set; }
 

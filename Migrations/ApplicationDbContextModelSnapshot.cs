@@ -30,10 +30,6 @@ namespace TrabajoFinalGrupo6DBP.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_CitaMedica"));
 
-                    b.Property<string>("Especialidad")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Estado_CitaMedica")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -60,6 +56,30 @@ namespace TrabajoFinalGrupo6DBP.Migrations
                     b.HasIndex("PacienteId");
 
                     b.ToTable("Citas_Medicas");
+                });
+
+            modelBuilder.Entity("TrabajoFinalGrupo6DBP.Models.Especialidad", b =>
+                {
+                    b.Property<int>("Id_Especialidad")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_Especialidad"));
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Estado_Especialidad")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Nombre_Especialidad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id_Especialidad");
+
+                    b.ToTable("Especialidades");
                 });
 
             modelBuilder.Entity("TrabajoFinalGrupo6DBP.Models.HorarioMedico", b =>
@@ -105,12 +125,11 @@ namespace TrabajoFinalGrupo6DBP.Migrations
                     b.Property<int>("DNI_Medico")
                         .HasColumnType("int");
 
-                    b.Property<string>("Especialidad")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("Estado_Medico")
                         .HasColumnType("bit");
+
+                    b.Property<int>("Id_Especialidad")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nombre_Completo_Medico")
                         .IsRequired()
@@ -122,6 +141,8 @@ namespace TrabajoFinalGrupo6DBP.Migrations
 
                     b.HasKey("Id_Medico");
 
+                    b.HasIndex("Id_Especialidad");
+
                     b.ToTable("Medicos");
                 });
 
@@ -132,6 +153,14 @@ namespace TrabajoFinalGrupo6DBP.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_Paciente"));
+
+                    b.Property<string>("Contrasenia_Paciente")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Correo_Paciente")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("DNI_Paciente")
                         .HasColumnType("int");
@@ -220,6 +249,22 @@ namespace TrabajoFinalGrupo6DBP.Migrations
                         .IsRequired();
 
                     b.Navigation("Medico");
+                });
+
+            modelBuilder.Entity("TrabajoFinalGrupo6DBP.Models.Medico", b =>
+                {
+                    b.HasOne("TrabajoFinalGrupo6DBP.Models.Especialidad", "Especialidad")
+                        .WithMany("Medicos")
+                        .HasForeignKey("Id_Especialidad")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Especialidad");
+                });
+
+            modelBuilder.Entity("TrabajoFinalGrupo6DBP.Models.Especialidad", b =>
+                {
+                    b.Navigation("Medicos");
                 });
 
             modelBuilder.Entity("TrabajoFinalGrupo6DBP.Models.Medico", b =>

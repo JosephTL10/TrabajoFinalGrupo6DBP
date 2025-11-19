@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TrabajoFinalGrupo6DBP.Models;
 
@@ -17,16 +18,27 @@ namespace TrabajoFinalGrupo6DBP.Controllers
         public IActionResult ListaMedicos()
         {
             var medicos = dbContext.Medicos
+                .Include(m => m.Especialidad)
                 .OrderBy(m => m.Nombre_Completo_Medico)
                 .ToList();
 
             return View(medicos);
         }
 
+
+        private void CargarEspecialidades()
+        {
+            ViewBag.Especialidades = new SelectList(dbContext.Especialidades
+            .Where(e => e.Estado_Especialidad)
+            .ToList(), "Id_Especialidad", "Nombre_Especialidad");
+        }
+
+
         
         [HttpGet]
         public IActionResult RegistrarMedico()
         {
+            CargarEspecialidades();
             return View();
         }
 
@@ -34,8 +46,11 @@ namespace TrabajoFinalGrupo6DBP.Controllers
         [HttpPost]
         public IActionResult RegistrarMedico(Medico medico)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid){
+
+                CargarEspecialidades();
                 return View(medico);
+            }
 
             // Validar duplicados por DNI
             bool existe = dbContext.Medicos.Any(m => m.DNI_Medico == medico.DNI_Medico);
@@ -53,12 +68,17 @@ namespace TrabajoFinalGrupo6DBP.Controllers
         }
 
         
+
         [HttpGet]
         public IActionResult EditarMedico(int id)
         {
             var medico = dbContext.Medicos.Find(id);
-            if (medico == null)
+            if (medico == null){
+
                 return NotFound();
+            }
+            CargarEspecialidades();
+
 
             return View(medico);
         }
@@ -142,6 +162,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             
             var medico = dbContext.Medicos
                 .Include(m => m.Horarios)
+                .Include(m => m.Especialidad)
                 .FirstOrDefault(m => m.Id_Medico == id);
 
             if (medico == null)

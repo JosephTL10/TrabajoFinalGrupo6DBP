@@ -52,6 +52,7 @@
                         <td data-label="Acciones">
                             <a asp-controller="Pacientes" asp-action="EditarRegistroPaciente" asp-route-id="@paciente.Id_Paciente" class="btn btn-warning">Editar</a>
                             <a asp-controller="Pacientes" asp-action="EliminarRegistroPaciente" asp-route-id="@paciente.Id_Paciente" class="btn btn-danger">Eliminar</a>
+                            <a asp-controller="Pacientes" asp-action="DetallePaciente" asp-route-id="@paciente.Id_Paciente" class="btn btn-info">Ver Detalles</a>
                         </td>
                     </tr>
                 }

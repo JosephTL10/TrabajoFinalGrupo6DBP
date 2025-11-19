@@ -1,0 +1,35 @@
+@model TrabajoFinalGrupo6DBP.Models.Especialidad
+
+@{
+    ViewData["Title"] = "Eliminar Especialidad";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/EliminarMedico.css" />
+}
+
+<h2>Eliminar Especialidad</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<div class="alert alert-warning">
+    <p>¿Está seguro que desea eliminar esta Especialidad? Esta acción no se puede deshacer.</p>
+</div>
+
+<table class="table table-bordered">
+    <tr><th>ID</th><td>@Model.Id_Especialidad</td></tr>
+    <tr><th>Nombre</th><td>@Model.Nombre_Especialidad</td></tr>
+    <tr><th>Descripción</th><td>@Model.Descripcion</td></tr>
+    <tr><th>Estado</th><td>@(Model.Estado_Especialidad ? "Activo" : "Inactivo")</td></tr>
+</table>
+
+<form asp-action="EliminarEspecialidadConfirmado" method="post">
+
+    <input type="hidden" name="id" value="@Model.Id_Especialidad" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    
+    <a asp-action="ListaEspecialidades" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -19,6 +19,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
         {
             var horarios = dbContext.Horarios_Medicos
                 .Include(h => h.Medico)  // Incluir datos del médico
+                .Include(h => h.Medico.Especialidad) // Incluir datos de la especialidad del médico
                 .OrderBy(h => h.Medico.Nombre_Completo_Medico) // Ordenar por nombre del médico
                 .ThenBy(h => h.DiaSemana) // Luego por día de la semana
                 .ToList(); // Ejecutar la consulta y obtener la lista

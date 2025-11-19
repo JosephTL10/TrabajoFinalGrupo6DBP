@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TrabajoFinalGrupo6DBP.Models;
 
@@ -20,6 +21,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             var citas = dbContext.Citas_Medicas
                 .Include(c => c.Paciente)
                 .Include(c => c.Medico)
+                .ThenInclude(m => m.Especialidad)
                 .AsQueryable();
 
             if (!string.IsNullOrEmpty(dni))
@@ -35,8 +37,12 @@ namespace TrabajoFinalGrupo6DBP.Controllers
         [HttpGet]
         public IActionResult RegistrarCitaPaciente()
         {
+            ViewBag.Medicos = dbContext.Medicos.ToList();
+            ViewBag.Especialidades = new SelectList(dbContext.Especialidades.ToList(), "Id_Especialidad", "Nombre_Especialidad");
             return View();
         }
+
+
 
         [HttpPost]
         public IActionResult RegistrarCitaPaciente(CitaMedica cita)
@@ -102,12 +108,20 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             var cita = dbContext.Citas_Medicas
                 .Include(c => c.Paciente)
                 .Include(c => c.Medico)
+                .Include(c => c.Medico.Especialidad)
                 .FirstOrDefault(c => c.Id_CitaMedica == id);
 
             if (cita == null)
                 return NotFound();
 
             ViewBag.Medicos = dbContext.Medicos.ToList();
+
+
+            ViewBag.Especialidades = new SelectList(dbContext.Especialidades.Where(e => e.Estado_Especialidad).ToList(), 
+            "Id_Especialidad", 
+            "Nombre_Especialidad", 
+            cita.Medico.Especialidad.Id_Especialidad);
+
             return View(cita);
         }
 
@@ -118,6 +132,11 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.Medicos = dbContext.Medicos.ToList();
+
+                ViewBag.Especialidades = new SelectList(dbContext.Especialidades.Where(e => e.Estado_Especialidad).ToList(),
+                "Id_Especialidad",
+                "Nombre_Especialidad");
+                
                 return View(cita);
             }
 
@@ -150,6 +169,7 @@ namespace TrabajoFinalGrupo6DBP.Controllers
             var cita = dbContext.Citas_Medicas
                 .Include(c => c.Paciente)
                 .Include(c => c.Medico)
+                .Include(c => c.Medico.Especialidad)
                 .FirstOrDefault(c => c.Id_CitaMedica == id);
 
             if (cita == null)

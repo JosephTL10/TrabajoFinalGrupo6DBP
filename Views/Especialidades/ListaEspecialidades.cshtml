@@ -1,0 +1,62 @@
+@{
+    ViewData["Title"] = "Lista de Médicos";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/ListaMedicos.css" />
+}
+
+<div class="medicos-card">
+    <h2>Lista de Especialidades</h2>
+
+    <a asp-action="RegistrarEspecialidad" class="btn-registrar">Registrar nueva especialidad</a>
+
+    <div class="tabla-container">
+        <table class="tabla-medicos">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var m in Model)
+                {
+                    <tr>
+                        <td>@m.Nombre_Especialidad</td>
+                        <td>@m.Descripcion</td>
+                        
+                        <td>
+                            @if (m.Estado_Especialidad)
+                            {
+                                <span class="badge bg-success">Activo</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Inactivo</span>
+                            }
+                        </td>
+                        <td>
+                            
+
+                            <a asp-action="EditarEspecialidad" asp-route-id="@m.Id_Especialidad" class="btn btn-warning">Editar</a>
+
+                            <a asp-action="EliminarEspecialidad" asp-route-id="@m.Id_Especialidad" class="btn btn-danger">Eliminar</a>
+
+
+                            <form asp-action="CambiarEstado" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@m.Id_Especialidad" />
+
+                                <button type="submit" class="btn @(m.Estado_Especialidad ? "btn-secondary" : "btn-success")">
+                                    @(m.Estado_Especialidad ? "Desactivar" : "Activar")
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

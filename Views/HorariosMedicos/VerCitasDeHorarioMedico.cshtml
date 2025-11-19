@@ -44,7 +44,7 @@
                         <td>@cita.Fecha_CitaMedica.ToShortDateString()</td>
                         <td>@cita.Hora_CitaMedica</td>
                         <td>@cita.Paciente?.Nombre_Completo_Paciente</td>
-                        <td>@cita.Especialidad</td>
+                        <td>@cita.Medico?.Especialidad?.Nombre_Especialidad</td>
                         <td>@cita.Estado_CitaMedica</td>
                         <td>@cita.Observaciones</td>
                     </tr>

@@ -21,6 +21,16 @@ namespace TrabajoFinalGrupo6DBP.Models
         public string Telefono_Paciente { get; set; }
 
         [Required]
+        [EmailAddress]
+        public string Correo_Paciente { get; set; }
+
+
+        [Required]
+        [DataType(DataType.Password)]
+        public string Contrasenia_Paciente { get; set; }
+
+
+        [Required]
         public string Direccion_Paciente { get; set; }
 
         // Relación con Cita Médica
