@@ -41,7 +41,7 @@
         
         </div>
 
-        <!-- ✅ Selector de médico dinámico -->
+        <!-- Selector de médico dinámico -->
         <div class="form-group">
             <label asp-for="MedicoId">Médico</label>
             <select asp-for="MedicoId" id="MedicoId" class="form-control" required disabled>
@@ -49,7 +49,7 @@
             </select>
         </div>
 
-        <!-- 🕐 Información de horarios -->
+        <!-- Información de horarios -->
         <div id="infoHorario"></div>
 
 
@@ -94,7 +94,7 @@
 
 @section Scripts {
 <script>
-    // 🔄 Cargar médicos por especialidad
+    // Cargar médicos por especialidad
     document.getElementById("Especialidad").addEventListener("change", function() {
         const especialidad = this.value;
         const medicoSelect = document.getElementById("MedicoId");
@@ -124,7 +124,7 @@
         }
     });
 
-    // 🕒 Mostrar horario del médico seleccionado
+    // Mostrar horario del médico seleccionado
     document.getElementById("MedicoId").addEventListener("change", function() {
         const id = this.value;
         const info = document.getElementById("infoHorario");
@@ -149,7 +149,7 @@
         }
     });
 
-    // ✅ Si ya tiene especialidad, cargar los médicos automáticamente
+    // Si ya tiene especialidad, cargar los médicos automáticamente
     window.addEventListener("load", function() {
         const especialidad = document.getElementById("Especialidad").value;
         if (especialidad) {
@@ -161,44 +161,44 @@
 
 
 
-    // 🔄 Cargar bloques disponibles según médico y fecha
-function cargarBloques() {
-    const medicoId = document.getElementById("MedicoId").value;
-    const fecha = document.getElementById("Fecha_CitaMedica").value;
-    const selectHora = document.getElementById("Hora_CitaMedica");
-    const info = document.getElementById("infoBloques");
+    // Cargar bloques disponibles según médico y fecha
+    function cargarBloques() {
+        const medicoId = document.getElementById("MedicoId").value;
+        const fecha = document.getElementById("Fecha_CitaMedica").value;
+        const selectHora = document.getElementById("Hora_CitaMedica");
+        const info = document.getElementById("infoBloques");
 
-    if (!medicoId || !fecha) return;
+        if (!medicoId || !fecha) return;
 
-    fetch(`/api/bloques/disponibles?medicoId=${medicoId}&fecha=${fecha}`)
-        .then(res => res.json())
-        .then(data => {
-            selectHora.innerHTML = "";
-            if (data.length === 0) {
-                selectHora.innerHTML = "<option>No hay horario disponible ese día</option>";
-                info.textContent = "";
-                return;
-            }
+        fetch(`/api/horarios/bloquesDisponibles?medicoId=${medicoId}&fecha=${fecha}`)
+            .then(res => res.json())
+            .then(data => {
+                selectHora.innerHTML = "";
+                if (data.length === 0) {
+                    selectHora.innerHTML = "<option>No hay horario disponible ese día</option>";
+                    info.textContent = "";
+                    return;
+                }
 
-            let hayDisponibles = false;
-            data.forEach(b => {
-                const option = document.createElement("option");
-                option.value = b.hora;
-                option.textContent = b.hora + (b.ocupado ? " (Ocupado)" : "");
-                option.disabled = b.ocupado;
-                selectHora.appendChild(option);
-                if (!b.ocupado) hayDisponibles = true;
+                let hayDisponibles = false;
+                data.forEach(b => {
+                    const option = document.createElement("option");
+                    option.value = b.hora;
+                    option.textContent = b.hora + (b.ocupado ? " (Ocupado)" : "");
+                    option.disabled = b.ocupado;
+                    selectHora.appendChild(option);
+                    if (!b.ocupado) hayDisponibles = true;
+                });
+
+                info.textContent = hayDisponibles
+                    ? "Seleccione una hora disponible."
+                    : "No hay horas disponibles para este médico en esa fecha.";
             });
+    }
 
-            info.textContent = hayDisponibles
-                ? "Seleccione una hora disponible."
-                : "No hay horas disponibles para este médico en esa fecha.";
-        });
-}
-
-// 🗓 Escuchar cambios
-document.getElementById("Fecha_CitaMedica").addEventListener("change", cargarBloques);
-document.getElementById("MedicoId").addEventListener("change", cargarBloques);
+    // Escuchar cambios
+    document.getElementById("Fecha_CitaMedica").addEventListener("change", cargarBloques);
+    document.getElementById("MedicoId").addEventListener("change", cargarBloques);
 
 
 

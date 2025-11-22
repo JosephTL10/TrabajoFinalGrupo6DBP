@@ -182,7 +182,7 @@ label {
 
 
 
-    // Cargar bloques horarios disponibles según fecha y médico
+    
     // Cargar bloques disponibles según médico y fecha
     function cargarBloques() {
         const medicoId = document.getElementById("MedicoId").value;
@@ -192,7 +192,7 @@ label {
 
         if (!medicoId || !fecha) return;
 
-        fetch(`/api/bloques/disponibles?medicoId=${medicoId}&fecha=${fecha}`)
+        fetch(`/api/horarios/bloquesDisponibles?medicoId=${medicoId}&fecha=${fecha}`)
             .then(res => res.json())
             .then(data => {
                 selectHora.innerHTML = "";
